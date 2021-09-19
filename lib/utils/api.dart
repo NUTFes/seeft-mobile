@@ -1,4 +1,5 @@
 import 'package:http/io_client.dart';
+import 'package:http/http.dart' as http;
 import 'package:seeft_mobile/configs/importer.dart';
 
 final Api api = Api();
@@ -28,20 +29,16 @@ class Api {
     }
   }
 
-  Future get(url, request) async {
+  Future get(url) async {
     // debug
-    bool trustSelfSigned = true;
-    HttpClient httpClient = new HttpClient()
-      ..badCertificateCallback =
-          ((X509Certificate cert, String host, int port) => trustSelfSigned);
-    IOClient ioClient = new IOClient(httpClient);
-
-//    final response = await http.(
-    final response = await ioClient.post(
-      url,
-      body: json.encode(request),
-      headers: {"Content-Type": "application/json"},
-    );
+    // bool trustSelfSigned = true;
+    // HttpClient httpClient = new HttpClient()
+    //   ..badCertificateCallback =
+    //       ((X509Certificate cert, String host, int port) => trustSelfSigned);
+    // IOClient ioClient = new IOClient(httpClient);
+    final uri = Uri.parse(url);
+    final response = await http.get(uri);
+//    final response = await ioClient.get(url);
 
     if (response.statusCode == 200) {
       logger.d('success get');
@@ -54,11 +51,11 @@ class Api {
 
 // Example
   Future getMyShift(id) async {
-    Map<String, dynamic> request = {'id': id};
-    String url = constant.apiUrl + 'myshift';
+    String url = constant.apiUrl + 'shift/' + id;
     try {
-      return await get(url, request);
+      return await get(url);
     } catch (err) {
+      logger.e(err);
       // calling api.get みたいに呼び出し元参照できるようにしたい
       throw err;
     }
