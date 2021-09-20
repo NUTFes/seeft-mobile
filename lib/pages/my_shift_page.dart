@@ -1,5 +1,8 @@
+import 'dart:developer';
+
 import 'package:seeft_mobile/configs/importer.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:http/http.dart' as http;
 
 class MyShiftPage extends StatefulWidget {
   @override
@@ -15,66 +18,6 @@ class _MyShiftPageState extends State<MyShiftPage> {
   @override
   void initState() {
     super.initState();
-/*
-    flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
-    var initializationSettingsAndroid =
-        AndroidInitializationSettings('app_icon');
-    var initializationSettingsIOS = IOSInitializationSettings(
-        onDidReceiveLocalNotification: onDidReceiveLocationLocation);
-    var initializationSettings = InitializationSettings(
-      android: initializationSettingsAndroid,
-      iOS: initializationSettingsIOS,
-    );
-    flutterLocalNotificationsPlugin.initialize(
-      initializationSettings,
-      onSelectNotification: onSelectNotification,
-    );
-
-    var androidPlatformChannelSpecifics = AndroidNotificationDetails(
-      'your channel id',
-      'your channel name',
-      'your channel description',
-      importance: Importance.max,
-      priority: Priority.high,
-    );
-    var iOSPlatformChannelSpecifics = IOSNotificationDetails();
-    platformChannelSpecifics = NotificationDetails(
-      android: androidPlatformChannelSpecifics,
-      iOS: iOSPlatformChannelSpecifics,
-    );
-*/
-  }
-
-  Future onSelectNotification(String payload) async {
-/*
-    await Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => CouponListDetail(id: payload),
-        maintainState: false,
-      ),
-    );
-*/
-  }
-
-  /// iOS用のイベント
-  Future onDidReceiveLocationLocation(
-      int id, String title, String body, String payload) async {
-    await showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: Text(title),
-          content: Text(body),
-          actions: <Widget>[
-            FlatButton(
-              onPressed: () => Navigator.of(context).pop(),
-              child: Text(payload),
-            )
-          ],
-        );
-      },
-    );
   }
 
   @override
@@ -89,78 +32,90 @@ class _MyShiftPageState extends State<MyShiftPage> {
           actions: <Widget>[
             //Widget
           ]),
-      body: Container(
-        padding: const EdgeInsets.all(40.0),
-        child: Column(
-          children: <Widget>[
-            Container(
-              height: size.height - 200,
-              width: size.width - 80,
-              padding: const EdgeInsets.all(10.0),
-              decoration: BoxDecoration(
-                border: Border.all(color: Colors.black),
-              ),
-              child: _contents(size),
-            ),
-          ],
-        ),
+      body: FutureBuilder(
+        future: getData(),
+        builder: (ctx, snapshot) {
+          if (snapshot.connectionState == AsyncSnapshot.waiting()) {
+            logger.w("message");
+          }
+          if (!snapshot.hasData) {
+            return CircularProgressIndicator();
+          }
+          return Container(
+              padding: const EdgeInsets.all(40.0),
+              child: SingleChildScrollView(
+                child: Column(
+                  children: <Widget>[
+                    Container(
+                        // height: size.height - 200,
+                        // width: size.width - 80,
+                        // padding: const EdgeInsets.all(10.0),
+                        // decoration: BoxDecoration(
+                        //   border: Border.all(color: Colors.black),
+                        // ),
+                        // child: _contents(size, snapshot.data)),
+                        child: _table(snapshot.data)),
+                  ],
+                ),
+              ));
+        },
       ),
     );
   }
+}
 
-  Widget _contents(Size size) {
-    return Column(children: <Widget>[
-      SizedBox(
-        width: size.width - 100,
-        child: Text(
-          "新着情報",
-          textAlign: TextAlign.left,
-        ),
-      ),
-      SizedBox(
-        width: size.width - 100,
-        child: Text(
-          '- 11/12',
-          textAlign: TextAlign.left,
-        ),
-      ),
-      SizedBox(
-        width: size.width - 100,
-        child: Text(
-          '- 11/13',
-          textAlign: TextAlign.left,
-        ),
-      ),
-      SizedBox(
-        child: RaisedButton(
-          onPressed: () async {
-            final result = api.getMyShift;
-            _onNotification(result);
-          },
-          child: Text('GET'),
-        ),
-      ),
-    ]);
-  }
+Widget _table(var shifts) {
+  return Table(
+      border: TableBorder.all(color: Colors.black),
+      columnWidths: const <int, TableColumnWidth>{
+        // 0: IntrinsicColumnWidth(),
+        0: FlexColumnWidth(1),
+        1: FlexColumnWidth(10),
+        // 2: FixedColumnWidth(100.0),
+      },
+      defaultVerticalAlignment: TableCellVerticalAlignment.middle,
+      children: [
+        TableRow(children: [
+          TableCell(
+              child: Container(
+            child: Text("日時"),
+            alignment: Alignment.center,
+            color: Colors.lightGreen,
+          )),
+          TableCell(
+            child: Container(
+              child: Text("場所"),
+              alignment: Alignment.center,
+              color: Colors.lightGreen,
+            ),
+          )
+        ]),
+        for (var shift in shifts)
+          TableRow(
+              decoration: BoxDecoration(color: Colors.grey[200]),
+              children: [
+                TableCell(
+                    child: Container(
+                  alignment: Alignment.center,
+                  child: new Text(shift["Time"].toString()),
+                )),
+                TableCell(
+                    child: Container(
+                  alignment: Alignment.center,
+                  child: new Text(shift["Work"].toString()),
+                  // margin: EdgeInsets.only(bottom: 10.0),
+                  height: 25,
+                ))
+              ]),
+      ]);
+}
 
-  Future _onNotification(result) async {
-    List list = await result;
-    list.asMap().forEach((int index, element) async {
-      if (element["COUPON_ID"] != '0') {
-        try {
-          Map<String, dynamic> row = {'coupon': element["COUPON_ID"]};
-/*          await flutterLocalNotificationsPlugin.show(
-            index,
-            'STREAM_ID' + element["STREAM_ID"],
-            element["URL"],
-            platformChannelSpecifics,
-            payload: element["COUPON_ID"],
-          );
-*/
-        } catch (e) {
-          logger.e(e);
-        }
-      }
-    });
+Future getData() async {
+  try {
+    var userID = await store.getUserID();
+    var res = await api.getMyShift(userID.toString());
+    return res;
+  } catch (err) {
+    logger.e('don`t response. error message: $err');
   }
 }

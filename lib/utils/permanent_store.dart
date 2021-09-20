@@ -12,7 +12,7 @@ class PermanentStore {
 
   getUserID() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
-    final userID = prefs.getInt('userID') ?? 0;
+    final userID = prefs.getInt('userID') ?? 7;
     logger.d('load parmeanent store: $userID');
     return userID;
   }
