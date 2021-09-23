@@ -1,6 +1,6 @@
 import 'package:seeft_mobile/configs/importer.dart';
 import 'package:seeft_mobile/pages/my_shift_page.dart';
-// import 'package:seeft_mobile/pages/sign_up_page.dart';
+//import 'package:seeft_mobile/pages/sign_up_page.dart';
 import 'package:seeft_mobile/pages/sign_in_page.dart';
 
 class FirstJumpSelector extends StatefulWidget {
