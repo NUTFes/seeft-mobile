@@ -1,8 +1,4 @@
-import 'dart:developer';
-
 import 'package:seeft_mobile/configs/importer.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:http/http.dart' as http;
 
 class MyShiftPage extends StatefulWidget {
   @override
@@ -28,6 +24,7 @@ class _MyShiftPageState extends State<MyShiftPage> {
           title: Center(
             child: Text('ホーム'),
           ),
+          backgroundColor: Colors.teal[400],
           // debug
           actions: <Widget>[
             //Widget
@@ -54,7 +51,7 @@ class _MyShiftPageState extends State<MyShiftPage> {
                         //   border: Border.all(color: Colors.black),
                         // ),
                         // child: _contents(size, snapshot.data)),
-                        child: _table(snapshot.data)),
+                        child: _table(snapshot.data, context)),
                   ],
                 ),
               ));
@@ -64,9 +61,9 @@ class _MyShiftPageState extends State<MyShiftPage> {
   }
 }
 
-Widget _table(var shifts) {
+Widget _table(var shifts, context) {
   return Table(
-      border: TableBorder.all(color: Colors.black),
+      border: TableBorder.all(color: Colors.white),
       columnWidths: const <int, TableColumnWidth>{
         // 0: IntrinsicColumnWidth(),
         0: FlexColumnWidth(1),
@@ -75,18 +72,16 @@ Widget _table(var shifts) {
       },
       defaultVerticalAlignment: TableCellVerticalAlignment.middle,
       children: [
-        TableRow(children: [
+        TableRow(decoration: BoxDecoration(color: Colors.green[50]), children: [
           TableCell(
               child: Container(
             child: Text("日時"),
             alignment: Alignment.center,
-            color: Colors.lightGreen,
           )),
           TableCell(
             child: Container(
               child: Text("場所"),
               alignment: Alignment.center,
-              color: Colors.lightGreen,
             ),
           )
         ]),
@@ -101,10 +96,25 @@ Widget _table(var shifts) {
                 )),
                 TableCell(
                     child: Container(
+                  width: double.infinity,
+                  height: 54.0,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: TextButton(
+                      child: new Text(shift["Work"].toString()),
+                      style: ElevatedButton.styleFrom(
+                        onPrimary: Colors.teal,
+                      ),
+                      onPressed: () async {
+                        openDialog(context);
+                      }),
+                  /*
                   alignment: Alignment.center,
                   child: new Text(shift["Work"].toString()),
                   // margin: EdgeInsets.only(bottom: 10.0),
                   height: 25,
+                  */
                 ))
               ]),
       ]);
