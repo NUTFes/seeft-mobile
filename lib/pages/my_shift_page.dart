@@ -122,8 +122,14 @@ Widget _table(var shifts, context) {
 
 Future getData() async {
   try {
+    /*
     var userID = await store.getUserID();
     var res = await api.getMyShift(userID.toString());
+    */
+
+    var testUserID = 108;
+    var res = await api.getMyShift(testUserID.toString());
+
     return res;
   } catch (err) {
     logger.e('don`t response. error message: $err');

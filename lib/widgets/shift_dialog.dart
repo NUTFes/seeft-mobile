@@ -5,7 +5,7 @@ void openShiftDialog(BuildContext context) {
     context: context,
     builder: (context) {
       return SimpleDialog(
-        title: Text("Title"),
+        title: Text("Shift Name"),
         children: <Widget>[
           // コンテンツ領域
           SimpleDialogOption(
