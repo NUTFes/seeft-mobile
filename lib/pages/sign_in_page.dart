@@ -81,17 +81,15 @@ class _SignInPageState extends State<SignInPage> {
                             onPrimary: Colors.white,
                           ),
                           onPressed: () async {
-                            String url = constant.apiUrl + 'auth';
-
                             try {
                               var request = {
                                 "mail": mail,
                                 "password": password
                               };
-                              var res = await api.post(url, request);
+                              var res = await api.postSignIn(request);
 
                               setState(() {
-                                infoText = "ログイン:${res.body}";
+                                infoText = "ログイン:${res.statusCode}";
                               });
                             } catch (e) {
                               setState(() {

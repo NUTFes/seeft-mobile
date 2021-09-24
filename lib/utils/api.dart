@@ -25,17 +25,9 @@ class Api {
       uri,
       body: json.encode(req),
       headers: {
-        "Access-Control-Allow-Credentials": "ture",
-        "Access-Control-Allow-Headers":
-            "Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization, accept, origin, Cache-Control, X-Requested-With",
-        "Access-Control-Allow-Methods": "POST, GET, OPTIONS",
-        "Access-Control-Allow-Origin": "*",
-        "Content-Type": "application/json; charset=utf-8",
-        "Date": "Thu, 23 Sep 2021 15:24:15 GMT",
-        "X-Cache": "MISS from proxy4.nagaokaut.ac.jp",
-        "X-Cache-Lookup": "MISS from proxy4.nagaokaut.ac.jp:8080",
-        "Via": "1.1 proxy4.nagaokaut.ac.jp (squid/3.5.27)",
-        "Connection": "keep-alive",
+        HttpHeaders.contentTypeHeader: 'application/json',
+        //"Content-Type": "application/json",
+        //"Content-Length": "<calculated when request is sent>",
       },
     );
 
@@ -82,12 +74,25 @@ class Api {
 
   // POST Sign In
   Future postSignIn(request) async {
-    String url = constant.apiUrl + 'auth';
+    var url = Uri.parse(constant.apiUrl + 'auth');
+    var response = await http.post(url,
+        body: {'mail': 'y.kugue.nutfes@gmail.com', 'password': 'gidaifes'});
+
+    if (response.statusCode == 200) {
+      logger.e('success posted.');
+      return json.decode(response.body);
+    } else {
+      logger.e('failed posted.');
+      throw Exception('Failed POST in Api.post()');
+    }
+
+    /*
     try {
       return await post(url, request);
     } catch (err) {
       logger.e(err);
       throw err;
     }
+    */
   }
 }
