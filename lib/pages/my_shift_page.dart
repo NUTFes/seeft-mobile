@@ -107,7 +107,7 @@ Widget _table(var shifts, context) {
                         onPrimary: Colors.teal,
                       ),
                       onPressed: () async {
-                        openDialog(context);
+                        openShiftDialog(context);
                       }),
                   /*
                   alignment: Alignment.center,

@@ -1,6 +1,6 @@
 import 'package:seeft_mobile/configs/importer.dart';
 
-void openDialog(BuildContext context) {
+void openShiftDialog(BuildContext context) {
   showDialog(
     context: context,
     builder: (context) {
