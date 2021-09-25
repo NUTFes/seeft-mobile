@@ -83,4 +83,14 @@ class Api {
       throw Exception('Failed POST in Api.post()');
     }
   }
+
+  Future signIn(mail) async {
+    try {
+      var url = constant.apiUrl + "auth/" + mail;
+      return await api.get(url);
+    } catch (e) {
+      logger.e('failed got.');
+      throw Exception('Failed POST in Api.signIn()');
+    }
+  }
 }

@@ -10,10 +10,9 @@ class _SignInPageState extends State<SignInPage> {
   String mail = '';
   String infoText = '';
 
-  signIn() async {
+  _signIn() async {
     try {
-      var url = constant.apiUrl + "auth/" + mail;
-      var res = await api.get(url);
+      var res = await api.signIn(mail);
       var resId = res["ID"];
       await store.setUserID(resId);
 
@@ -26,7 +25,10 @@ class _SignInPageState extends State<SignInPage> {
           context, '/my_shift_page', (Route<dynamic> route) => false);
     } catch (e) {
       setState(() {
-        infoText = "ログインに失敗しました:${e.toString()}";
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+          content: Text('メールアドレスが違います'),
+          backgroundColor: Colors.redAccent,
+        ));
       });
     }
   }
@@ -81,7 +83,7 @@ class _SignInPageState extends State<SignInPage> {
                             onPrimary: Colors.white,
                           ),
                           onPressed: () async {
-                            signIn();
+                            _signIn();
                           },
                         ),
                       ),
