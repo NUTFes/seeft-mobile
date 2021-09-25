@@ -69,7 +69,10 @@ class _MyShiftPageState extends State<MyShiftPage> {
           ListTile(
             title: Text("再ログイン"),
             leading: Icon(Icons.login),
-            onTap: () => {},
+            onTap: () => {
+              Navigator.pushNamedAndRemoveUntil(
+                  context, '/', (Route<dynamic> route) => false)
+            },
           ),
         ],
       )),
