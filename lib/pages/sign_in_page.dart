@@ -65,9 +65,9 @@ class _SignInPageState extends State<SignInPage> {
                               });
                             },
                           ),
-                          const SizedBox(height: 50.0),
                         ],
                       ),
+                      const SizedBox(height: 50.0),
                       Container(
                         width: double.infinity,
                         height: 54.0,
