@@ -25,13 +25,54 @@ class _MyShiftPageState extends State<MyShiftPage> {
     final Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
-          title: Center(
-            child: Text('ホーム'),
+        title: const Text('マイシフト'),
+        actions: <Widget>[
+          IconButton(
+            icon: const Icon(Icons.add_alert),
+            tooltip: 'Show Snackbar',
+            onPressed: () {
+              ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(content: Text('This is a snackbar')));
+            },
           ),
-          // debug
-          actions: <Widget>[
-            //Widget
-          ]),
+        ],
+        // debug
+      ),
+      drawer: Drawer(
+          child: ListView(
+        children: <Widget>[
+          ListTile(
+            title: Text("マイシフト"),
+            leading: const Icon(Icons.dvr),
+            onTap: () => {},
+          ),
+          ListTile(
+            title: Text("全体シフト"),
+            leading: Icon(Icons.dynamic_feed),
+            onTap: () => {},
+          ),
+          ListTile(
+            title: Text("マニュアル一覧"),
+            leading: Icon(Icons.list_alt),
+            onTap: () => {},
+          ),
+          ListTile(
+            title: Text("タイムスケジュール"),
+            leading: Icon(Icons.schedule),
+            onTap: () => {},
+          ),
+          ListTile(
+            title: Text("本部連絡先"),
+            leading: Icon(Icons.contact_phone),
+            onTap: () => {},
+          ),
+          ListTile(
+            title: Text("再ログイン"),
+            leading: Icon(Icons.login),
+            onTap: () => {},
+          ),
+        ],
+      )),
       body: FutureBuilder(
         future: getData(),
         builder: (ctx, snapshot) {

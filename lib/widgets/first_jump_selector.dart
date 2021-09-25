@@ -69,7 +69,11 @@ class _FirstJumpSelectorState extends State<FirstJumpSelector> {
               },
             ),
           ),
-          home: homeWidget,
+          // home: homeWidget,
+          routes: {
+            '/': (context) => SignInPage(),
+            '/my_shift_page': (context) => MyShiftPage(),
+          },
         );
 
         return app;

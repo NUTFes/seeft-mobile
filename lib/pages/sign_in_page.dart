@@ -15,7 +15,7 @@ class _SignInPageState extends State<SignInPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Sign In Page'),
+        title: const Text('ログインページ'),
       ),
       body: Center(
         child: LayoutBuilder(
@@ -71,6 +71,10 @@ class _SignInPageState extends State<SignInPage> {
                               setState(() {
                                 infoText = "Your ID : ${userID}";
                               });
+                              Navigator.pushNamedAndRemoveUntil(
+                                  context,
+                                  '/my_shift_page',
+                                  (Route<dynamic> route) => false);
                             } catch (e) {
                               setState(() {
                                 infoText = "ログインに失敗しました:${e.toString()}";
