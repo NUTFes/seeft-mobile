@@ -1,6 +1,7 @@
+import 'package:flutter/material.dart';
 import 'package:seeft_mobile/configs/importer.dart';
 import 'package:seeft_mobile/pages/my_shift_page.dart';
-import 'package:seeft_mobile/pages/sign_up_page.dart';
+import 'package:seeft_mobile/pages/sign_in_page.dart';
 
 class FirstJumpSelector extends StatefulWidget {
   @override
@@ -32,19 +33,27 @@ class _FirstJumpSelectorState extends State<FirstJumpSelector> {
           return CircularProgressIndicator();
         }
 
+        /*
         var isUserID = snapshot.data;
         var homeWidget;
         if (isUserID!) {
+          logger.i('select SignInPage.');
+          homeWidget = new SignInPage();
+        } else {
           logger.i('select MainPage.');
           homeWidget = new MyShiftPage();
-        } else {
-          logger.i('select SignUpPage.');
-          homeWidget = new SignUpPage();
         }
+        */
 
         var app = new MaterialApp(
           title: constant.appName,
           theme: ThemeData(
+            primarySwatch: Colors.teal,
+            secondaryHeaderColor: Colors.teal[900],
+            focusColor: Colors.teal,
+            backgroundColor: Colors.white,
+            cardColor: Colors.white,
+            dialogBackgroundColor: Colors.white,
             pageTransitionsTheme: const PageTransitionsTheme(
               builders: <TargetPlatform, PageTransitionsBuilder>{
                 TargetPlatform.android: CupertinoPageTransitionsBuilder(),
@@ -52,7 +61,11 @@ class _FirstJumpSelectorState extends State<FirstJumpSelector> {
               },
             ),
           ),
-          home: homeWidget,
+          // home: homeWidget,
+          routes: {
+            '/': (context) => SignInPage(),
+            '/my_shift_page': (context) => MyShiftPage(),
+          },
         );
 
         return app;
