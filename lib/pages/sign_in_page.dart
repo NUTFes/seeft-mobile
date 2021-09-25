@@ -10,6 +10,27 @@ class _SignInPageState extends State<SignInPage> {
   String mail = '';
   String infoText = '';
 
+  signIn() async {
+    try {
+      var url = constant.apiUrl + "auth/" + mail;
+      var res = await api.get(url);
+      var resId = res["ID"];
+      await store.setUserID(resId);
+
+      // userIdをstoreにset出来てるか確認
+      var userID = await store.getUserID();
+      setState(() {
+        infoText = "Your ID : ${userID}";
+      });
+      Navigator.pushNamedAndRemoveUntil(
+          context, '/my_shift_page', (Route<dynamic> route) => false);
+    } catch (e) {
+      setState(() {
+        infoText = "ログインに失敗しました:${e.toString()}";
+      });
+    }
+  }
+
   /// 画面描写
   @override
   Widget build(BuildContext context) {
@@ -60,30 +81,7 @@ class _SignInPageState extends State<SignInPage> {
                             onPrimary: Colors.white,
                           ),
                           onPressed: () async {
-                            try {
-                              var url = constant.apiUrl + "auth/" + mail;
-                              var res = await api.get(url);
-                              var resId = res["ID"];
-                              await store.setUserID(resId);
-
-                              // userIdをstoreにset出来てるか確認
-                              var userID = await store.getUserID();
-                              setState(() {
-                                infoText = "Your ID : ${userID}";
-                              });
-                              Navigator.pushNamedAndRemoveUntil(
-                                  context,
-                                  '/my_shift_page',
-                                  (Route<dynamic> route) => false);
-                            } catch (e) {
-                              setState(() {
-                                ScaffoldMessenger.of(context)
-                                    .showSnackBar(const SnackBar(
-                                  content: Text('メールアドレスが違います'),
-                                  backgroundColor: Colors.redAccent,
-                                ));
-                              });
-                            }
+                            signIn();
                           },
                         ),
                       ),
