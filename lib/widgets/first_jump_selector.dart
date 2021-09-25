@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:seeft_mobile/configs/importer.dart';
 import 'package:seeft_mobile/pages/my_shift_page.dart';
-//import 'package:seeft_mobile/pages/sign_up_page.dart';
 import 'package:seeft_mobile/pages/sign_in_page.dart';
 
 class FirstJumpSelector extends StatefulWidget {
@@ -34,17 +33,9 @@ class _FirstJumpSelectorState extends State<FirstJumpSelector> {
           return CircularProgressIndicator();
         }
 
+        /*
         var isUserID = snapshot.data;
         var homeWidget;
-        /*
-        if (isUserID!) {
-          logger.i('select MainPage.');
-          homeWidget = new MyShiftPage();
-        } else {
-          logger.i('select SignUpPage.');
-          homeWidget = new SignUpPage();
-        }
-        */
         if (isUserID!) {
           logger.i('select SignInPage.');
           homeWidget = new SignInPage();
@@ -52,6 +43,7 @@ class _FirstJumpSelectorState extends State<FirstJumpSelector> {
           logger.i('select MainPage.');
           homeWidget = new MyShiftPage();
         }
+        */
 
         var app = new MaterialApp(
           title: constant.appName,

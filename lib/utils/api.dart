@@ -15,15 +15,12 @@ class Api {
     IOClient ioClient = new IOClient(httpClient);
 
     */
-    var req = {"mail": "y.kugue.nutfes@gmail.com", "password": "gidaifes"};
-    logger.e(req);
-    logger.e(json.encode(req));
 
     final uri = Uri.parse(url);
     final response = await http.post(
       //final response = await ioClient.post(
       uri,
-      body: json.encode(req),
+      // body: json.encode(req),
       headers: {
         HttpHeaders.contentTypeHeader: 'application/json',
         //"Content-Type": "application/json",
@@ -49,7 +46,7 @@ class Api {
     // IOClient ioClient = new IOClient(httpClient);
     final uri = Uri.parse(url);
     final response = await http.get(uri);
-//    final response = await ioClient.get(url);
+    // final response = await ioClient.get(url);
 
     if (response.statusCode == 200) {
       logger.d('success get');
@@ -79,20 +76,11 @@ class Api {
         body: {'mail': 'y.kugue.nutfes@gmail.com', 'password': 'gidaifes'});
 
     if (response.statusCode == 200) {
-      logger.e('success posted.');
+      logger.i('success posted.');
       return json.decode(response.body);
     } else {
       logger.e('failed posted.');
       throw Exception('Failed POST in Api.post()');
     }
-
-    /*
-    try {
-      return await post(url, request);
-    } catch (err) {
-      logger.e(err);
-      throw err;
-    }
-    */
   }
 }

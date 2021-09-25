@@ -26,16 +26,7 @@ class _MyShiftPageState extends State<MyShiftPage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('マイシフト'),
-        actions: <Widget>[
-          IconButton(
-            icon: const Icon(Icons.add_alert),
-            tooltip: 'Show Snackbar',
-            onPressed: () {
-              ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('This is a snackbar')));
-            },
-          ),
-        ],
+        actions: <Widget>[],
         // debug
       ),
       drawer: Drawer(
