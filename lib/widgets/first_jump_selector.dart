@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:seeft_mobile/configs/importer.dart';
 import 'package:seeft_mobile/pages/my_shift_page.dart';
 //import 'package:seeft_mobile/pages/sign_up_page.dart';
@@ -55,6 +56,12 @@ class _FirstJumpSelectorState extends State<FirstJumpSelector> {
         var app = new MaterialApp(
           title: constant.appName,
           theme: ThemeData(
+            primarySwatch: Colors.teal,
+            secondaryHeaderColor: Colors.teal[900],
+            focusColor: Colors.teal,
+            backgroundColor: Colors.white,
+            cardColor: Colors.white,
+            dialogBackgroundColor: Colors.white,
             pageTransitionsTheme: const PageTransitionsTheme(
               builders: <TargetPlatform, PageTransitionsBuilder>{
                 TargetPlatform.android: CupertinoPageTransitionsBuilder(),
