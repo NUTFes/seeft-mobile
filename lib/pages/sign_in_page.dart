@@ -36,7 +36,7 @@ class _SignInPageState extends State<SignInPage> {
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(8.0),
                               ),
-                              labelText: 'Mail',
+                              labelText: 'メールアドレス',
                             ),
                             onChanged: (String value) {
                               setState(() {
@@ -54,7 +54,7 @@ class _SignInPageState extends State<SignInPage> {
                           borderRadius: BorderRadius.circular(8.0),
                         ),
                         child: ElevatedButton(
-                          child: const Text('Sign In'),
+                          child: const Text('ログイン'),
                           style: ElevatedButton.styleFrom(
                             primary: Colors.teal,
                             onPrimary: Colors.white,
@@ -77,7 +77,11 @@ class _SignInPageState extends State<SignInPage> {
                                   (Route<dynamic> route) => false);
                             } catch (e) {
                               setState(() {
-                                infoText = "ログインに失敗しました:${e.toString()}";
+                                ScaffoldMessenger.of(context)
+                                    .showSnackBar(const SnackBar(
+                                  content: Text('メールアドレスが違います'),
+                                  backgroundColor: Colors.redAccent,
+                                ));
                               });
                             }
                           },
