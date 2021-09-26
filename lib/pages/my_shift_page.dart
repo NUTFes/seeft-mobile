@@ -29,7 +29,9 @@ class _MyShiftPageState extends State<MyShiftPage> {
         actions: <Widget>[],
         // debug
       ),
-      drawer: Drawer(
+      drawer: drawer.applicationDrawer(context),
+      /*
+      Drawer(
           child: ListView(
         children: <Widget>[
           ListTile(
@@ -82,6 +84,7 @@ class _MyShiftPageState extends State<MyShiftPage> {
           ),
         ],
       )),
+      */
       body: FutureBuilder(
         future: getData(),
         builder: (ctx, snapshot) {
