@@ -69,6 +69,66 @@ class Api {
     }
   }
 
+  // 準備日晴れシフト
+  Future getMyShiftPreparationDaySunny(id) async {
+    String url = constant.apiUrl + 'shift/' + id + '/preparationDay' + '/sunny';
+    try {
+      return await get(url);
+    } catch (err) {
+      logger.e(err);
+      // calling api.get みたいに呼び出し元参照できるようにしたい
+      throw err;
+    }
+  }
+
+  // 準備日雨シフト
+  Future getMyShiftPreparationDayRainy(id) async {
+    String url = constant.apiUrl + 'shift/' + id + '/preparationDay' + '/rainy';
+    try {
+      return await get(url);
+    } catch (err) {
+      logger.e(err);
+      // calling api.get みたいに呼び出し元参照できるようにしたい
+      throw err;
+    }
+  }
+
+  // 当日晴れシフト
+  Future getMyShiftCurrentDaySunny(id) async {
+    String url = constant.apiUrl + 'shift/' + id + '/currentDay' + '/sunny';
+    try {
+      return await get(url);
+    } catch (err) {
+      logger.e(err);
+      // calling api.get みたいに呼び出し元参照できるようにしたい
+      throw err;
+    }
+  }
+
+  // 当日雨シフト
+  Future getMyShiftCurrentDayRainy(id) async {
+    String url = constant.apiUrl + 'shift/' + id + '/currentDay' + '/rainy';
+    try {
+      return await get(url);
+    } catch (err) {
+      logger.e(err);
+      // calling api.get みたいに呼び出し元参照できるようにしたい
+      throw err;
+    }
+  }
+
+  // 片付け日シフト
+  Future getMyShiftCleanupDay(id) async {
+    String url = constant.apiUrl + 'shift/' + id + '/cleanupDay';
+    try {
+      return await get(url);
+    } catch (err) {
+      logger.e(err);
+      // calling api.get みたいに呼び出し元参照できるようにしたい
+      throw err;
+    }
+  }
+
   // POST Sign In (リダイレクションエラーが返ってくるため不使用)
   Future postSignIn(request) async {
     var url = Uri.parse(constant.apiUrl + 'auth');
