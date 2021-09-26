@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:seeft_mobile/configs/importer.dart';
 import 'package:seeft_mobile/pages/my_shift_page.dart';
 import 'package:seeft_mobile/pages/sign_in_page.dart';
@@ -48,6 +49,8 @@ class _FirstJumpSelectorState extends State<FirstJumpSelector> {
         var app = new MaterialApp(
           title: constant.appName,
           theme: ThemeData(
+            textTheme:
+                GoogleFonts.mPlus1pTextTheme(Theme.of(context).textTheme),
             primarySwatch: Colors.teal,
             secondaryHeaderColor: Colors.teal[900],
             focusColor: Colors.teal,
