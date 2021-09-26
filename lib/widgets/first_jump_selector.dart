@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:seeft_mobile/configs/importer.dart';
-import 'package:seeft_mobile/pages/my_shift_page.dart';
 import 'package:seeft_mobile/pages/sign_in_page.dart';
+import 'package:seeft_mobile/pages/my_shift_page.dart';
+import 'package:seeft_mobile/pages/all_shift_page.dart';
+import 'package:seeft_mobile/pages/manual_list_page.dart';
+import 'package:seeft_mobile/pages/schedule_page.dart';
+import 'package:seeft_mobile/pages/contact_page.dart';
 
 class FirstJumpSelector extends StatefulWidget {
   @override
@@ -48,6 +53,8 @@ class _FirstJumpSelectorState extends State<FirstJumpSelector> {
         var app = new MaterialApp(
           title: constant.appName,
           theme: ThemeData(
+            textTheme:
+                GoogleFonts.mPlus1pTextTheme(Theme.of(context).textTheme),
             primarySwatch: Colors.teal,
             secondaryHeaderColor: Colors.teal[900],
             focusColor: Colors.teal,
@@ -65,6 +72,10 @@ class _FirstJumpSelectorState extends State<FirstJumpSelector> {
           routes: {
             '/': (context) => SignInPage(),
             '/my_shift_page': (context) => MyShiftPage(),
+            '/all_shift_page': (context) => AllShiftPage(),
+            '/manual_list_page': (context) => ManualListPage(),
+            '/schedule_page': (context) => SchedulePage(),
+            '/contact_page': (context) => ContactPage(),
           },
         );
 
