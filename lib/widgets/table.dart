@@ -3,9 +3,9 @@ import 'package:seeft_mobile/configs/importer.dart';
 final ShiftTable table = ShiftTable();
 
 class ShiftTable {
-  Widget shiftTable(var shifts) {
+  Widget shiftTable(var shifts, context) {
     return Table(
-        border: TableBorder.all( color: Colors.black),
+        border: TableBorder.all(color: Colors.black),
         columnWidths: const <int, TableColumnWidth>{
           // 0: IntrinsicColumnWidth(),
           0: FlexColumnWidth(1),
@@ -39,11 +39,28 @@ class ShiftTable {
                     child: new Text(shift["Time"].toString()),
                   )),
                   TableCell(
+                      /*
                       child: Container(
                     alignment: Alignment.center,
                     child: new Text(shift["Work"].toString()),
                     // margin: EdgeInsets.only(bottom: 10.0),
                     height: 25,
+                    */
+                      child: Container(
+                    width: double.infinity,
+                    padding: EdgeInsets.all(0),
+                    //height: 25.0,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(50),
+                    ),
+                    child: TextButton(
+                        child: new Text(shift["Work"].toString()),
+                        style: ElevatedButton.styleFrom(
+                          onPrimary: Colors.teal,
+                        ),
+                        onPressed: () async {
+                          openShiftDialog(context);
+                        }),
                   ))
                 ]),
         ]);

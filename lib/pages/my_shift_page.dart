@@ -23,8 +23,8 @@ class _MyShiftPageState extends State<MyShiftPage>
   final List<TabInfo> _tabs = [
     TabInfo("準備日晴れ", MyShiftPagePreparationDaySunny()),
     TabInfo("準備日雨", MyShiftPagePrepationDayRainy()),
-    TabInfo("準備日晴れ", MyShiftPageCurrentDaySunny()),
-    TabInfo("準備日雨", MyShiftPageCurrentDayRainy()),
+    TabInfo("当日晴れ", MyShiftPageCurrentDaySunny()),
+    TabInfo("当日雨", MyShiftPageCurrentDayRainy()),
     TabInfo("片付け日", MyShiftPageCleanupDay()),
   ];
   late TabController _tabController;
@@ -59,6 +59,12 @@ class _MyShiftPageState extends State<MyShiftPage>
         // debug
       ),
       drawer: drawer.applicationDrawer(context),
+      body: TabBarView(
+          controller: _tabController,
+          children: _tabs.map((tab) => tab.widget).toList()),
+    );
+  }
+}
 
 /*
   @override
@@ -189,9 +195,3 @@ Future getData() async {
 }
 =======
       */
-      body: TabBarView(
-          controller: _tabController,
-          children: _tabs.map((tab) => tab.widget).toList()),
-    );
-  }
-}

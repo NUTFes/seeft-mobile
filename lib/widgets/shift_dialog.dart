@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:seeft_mobile/configs/importer.dart';
 
 void openShiftDialog(BuildContext context) {
@@ -5,14 +6,25 @@ void openShiftDialog(BuildContext context) {
     context: context,
     builder: (context) {
       return SimpleDialog(
-        title: Text("Shift Name"),
-        children: <Widget>[
-          // コンテンツ領域
-          SimpleDialogOption(
-            onPressed: () => Navigator.pop(context),
-            child: Text("１項目目"),
+        contentPadding: EdgeInsets.zero,
+        titlePadding: EdgeInsets.zero,
+        title: Container(
+          height: 550,
+          child: Scaffold(
+            appBar: AppBar(
+              title: Text('Shift Title'),
+              centerTitle: true,
+            ),
+            floatingActionButton: OutlinedButton(
+              child: const Text('マニュアルへ'),
+              style: OutlinedButton.styleFrom(
+                primary: Colors.orangeAccent,
+                side: const BorderSide(color: Colors.orangeAccent),
+              ),
+              onPressed: () {},
+            ),
           ),
-        ],
+        ),
       );
     },
   );
