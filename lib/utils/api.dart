@@ -69,7 +69,7 @@ class Api {
     }
   }
 
-  // POST Sign In
+  // POST Sign In (リダイレクションエラーが返ってくるため不使用)
   Future postSignIn(request) async {
     var url = Uri.parse(constant.apiUrl + 'auth');
     var response = await http.post(url,
@@ -84,6 +84,7 @@ class Api {
     }
   }
 
+  // Get Sign In
   Future signIn(mail) async {
     try {
       var url = constant.apiUrl + "auth/" + mail;
