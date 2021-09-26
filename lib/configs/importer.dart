@@ -17,4 +17,4 @@ export 'package:seeft_mobile/utils/api.dart';
 
 // widgets
 export 'package:seeft_mobile/widgets/table.dart';
-
+export 'package:seeft_mobile/widgets/drawer.dart';

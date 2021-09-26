@@ -60,33 +60,50 @@ class _MyShiftPageState extends State<MyShiftPage>
         ),
         // debug
       ),
-      drawer: Drawer(
+      drawer: drawer.applicationDrawer(context),
+      /*
+      Drawer(
           child: ListView(
         children: <Widget>[
           ListTile(
             title: Text("マイシフト"),
             leading: const Icon(Icons.dvr),
-            onTap: () => {},
+            onTap: () => {
+              Navigator.pushNamedAndRemoveUntil(
+                  context, '/my_shift_page', (Route<dynamic> route) => false)
+            },
           ),
           ListTile(
             title: Text("全体シフト"),
             leading: Icon(Icons.dynamic_feed),
-            onTap: () => {},
+            onTap: () => {
+              Navigator.pushNamedAndRemoveUntil(
+                  context, '/all_shift_page', (Route<dynamic> route) => false)
+            },
           ),
           ListTile(
             title: Text("マニュアル一覧"),
             leading: Icon(Icons.list_alt),
-            onTap: () => {},
+            onTap: () => {
+              Navigator.pushNamedAndRemoveUntil(
+                  context, '/manual_list_page', (Route<dynamic> route) => false)
+            },
           ),
           ListTile(
             title: Text("タイムスケジュール"),
             leading: Icon(Icons.schedule),
-            onTap: () => {},
+            onTap: () => {
+              Navigator.pushNamedAndRemoveUntil(
+                  context, '/schedule_page', (Route<dynamic> route) => false)
+            },
           ),
           ListTile(
             title: Text("本部連絡先"),
             leading: Icon(Icons.contact_phone),
-            onTap: () => {},
+            onTap: () => {
+              Navigator.pushNamedAndRemoveUntil(
+                  context, '/contact_page', (Route<dynamic> route) => false)
+            },
           ),
           ListTile(
             title: Text("再ログイン"),
@@ -98,6 +115,7 @@ class _MyShiftPageState extends State<MyShiftPage>
           ),
         ],
       )),
+      */
       body: TabBarView(
           controller: _tabController,
           children: _tabs.map((tab) => tab.widget).toList()),
