@@ -151,7 +151,30 @@ class Api {
       return await api.get(url);
     } catch (e) {
       logger.e('failed got.');
-      throw Exception('Failed POST in Api.signIn()');
+      throw Exception('Failed GET in Api.signIn()');
+    }
+  }
+
+  // Get Shift Detail
+  Future shiftDetail(workId, userId, date, weather, time) async {
+    try {
+      var url = constant.apiUrl +
+          "/work/" +
+          workId.toString() +
+          "/" +
+          userId.toString() +
+          "/" +
+          date +
+          "/" +
+          weather +
+          "/" +
+          time;
+      var res = await get(url);
+      logger.i(res);
+      return res;
+    } catch (e) {
+      logger.e('failed got.');
+      throw Exception('Failed GET in Api.workDetail()');
     }
   }
 }
