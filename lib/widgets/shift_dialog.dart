@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
 import 'package:seeft_mobile/configs/importer.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -37,10 +38,18 @@ openShiftDialog(
             appBar: AppBar(
               title: Text(resName), //シフト名
               centerTitle: true,
+              actions: <Widget>[
+                IconButton(
+                  onPressed: () async {},
+                  icon: Icon(Icons.wrap_text),
+                  color: Colors.orangeAccent[100],
+                ),
+              ],
             ),
             body: Container(
               child: Text(resUsers),
             ),
+            /*
             floatingActionButton: OutlinedButton(
               child: const Text('マニュアルへ'),
               style: OutlinedButton.styleFrom(
@@ -51,6 +60,7 @@ openShiftDialog(
                 //_launchURL(resURL);
               },
             ),
+            */
           ),
         ),
       );
