@@ -29,14 +29,14 @@ class ShiftTable {
               ),
             )
           ]),
-          for (var shift in shifts)
+          for (var index = 0; index < shifts.length; index++)
             TableRow(
                 decoration: BoxDecoration(color: Colors.white60),
                 children: [
                   TableCell(
                       child: Container(
                     alignment: Alignment.center,
-                    child: new Text(shift["Time"].toString()),
+                    child: new Text(shifts[index]["Time"].toString()),
                   )),
                   TableCell(
                       /*
@@ -54,12 +54,19 @@ class ShiftTable {
                       borderRadius: BorderRadius.circular(50),
                     ),
                     child: TextButton(
-                        child: new Text(shift["Work"].toString()),
+                        child: new Text(shifts[index]["Work"].toString()),
                         style: ElevatedButton.styleFrom(
                           onPrimary: Colors.teal,
                         ),
                         onPressed: () async {
-                          openShiftDialog(context);
+                          logger.i(shifts[index]["Work"]);
+                          await openShiftDialog(
+                              context,
+                              shifts[index]["WorkID"],
+                              shifts[index]["UserID"],
+                              shifts[index]["Date"],
+                              shifts[index]["Weather"],
+                              shifts[index]["Time"]);
                         }),
                   ))
                 ]),
