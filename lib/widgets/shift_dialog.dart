@@ -24,8 +24,11 @@ openShiftDialog(
   var res = await getShiftDetail(workId, userId, date, weather, time);
   logger.i(res);
   var resName = res["Name"];
-  //var resURL = res["URL"];
+  var resURL = res["URL"];
   var resUsers = res["Users"];
+  var resPlace = res["Place"];
+  var resPresident = res["President"];
+  var resPresidentTel = res["TEL"];
   showDialog(
     context: context,
     builder: (context) {
@@ -47,7 +50,30 @@ openShiftDialog(
               ],
             ),
             body: Container(
-              child: Text(resUsers),
+              child: ListView(
+                children: <Widget>[
+                  ListTile(
+                    leading: Icon(Icons.place_outlined),
+                    title: Text("集合場所"),
+                    subtitle: Text(resPlace),
+                  ),
+                  ListTile(
+                    leading: Icon(Icons.supervisor_account_outlined),
+                    title: Text("代表者"),
+                    subtitle: Text(resPresident),
+                  ),
+                  ListTile(
+                    leading: Icon(Icons.phone),
+                    title: Text("緊急時連絡先"),
+                    subtitle: Text(resPresidentTel),
+                  ),
+                  ListTile(
+                    leading: Icon(Icons.group),
+                    title: Text("メンバー"),
+                    subtitle: Text(resUsers),
+                  ),
+                ],
+              ),
             ),
             /*
             floatingActionButton: OutlinedButton(
