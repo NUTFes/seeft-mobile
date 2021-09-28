@@ -32,23 +32,26 @@ class _FirstJumpSelectorState extends State<FirstJumpSelector> {
     return FutureBuilder(
       future: getPrefRead(),
       builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
-        var hasData = snapshot.hasData;
+        // var hasData = snapshot;
+        logger.i('===============================');
+        logger.i(store.isUserID());
+
+        /*
         if (hasData == false) {
           logger.w('can\'t final snapshot data');
           return CircularProgressIndicator();
         }
+        */
 
-        /*
         var isUserID = snapshot.data;
         var homeWidget;
         if (isUserID!) {
           logger.i('select SignInPage.');
-          homeWidget = new SignInPage();
+          homeWidget = '/';
         } else {
           logger.i('select MainPage.');
-          homeWidget = new MyShiftPage();
+          homeWidget = '/my_shift_page';
         }
-        */
 
         var app = new MaterialApp(
           title: constant.appName,
@@ -68,7 +71,8 @@ class _FirstJumpSelectorState extends State<FirstJumpSelector> {
               },
             ),
           ),
-          // home: homeWidget,
+          //home: homeWidget,
+          initialRoute: homeWidget,
           routes: {
             '/': (context) => SignInPage(),
             '/my_shift_page': (context) => MyShiftPage(),
