@@ -3,9 +3,9 @@ import 'package:seeft_mobile/configs/importer.dart';
 final ShiftTable table = ShiftTable();
 
 class ShiftTable {
-  Widget shiftTable(var shifts) {
+  Widget shiftTable(var shifts, context) {
     return Table(
-        border: TableBorder.all( color: Colors.black),
+        border: TableBorder.all(color: Colors.black),
         columnWidths: const <int, TableColumnWidth>{
           // 0: IntrinsicColumnWidth(),
           0: FlexColumnWidth(1),
@@ -29,21 +29,45 @@ class ShiftTable {
               ),
             )
           ]),
-          for (var shift in shifts)
+          for (var index = 0; index < shifts.length; index++)
             TableRow(
                 decoration: BoxDecoration(color: Colors.white60),
                 children: [
                   TableCell(
                       child: Container(
                     alignment: Alignment.center,
-                    child: new Text(shift["Time"].toString()),
+                    child: new Text(shifts[index]["Time"].toString()),
                   )),
                   TableCell(
+                      /*
                       child: Container(
                     alignment: Alignment.center,
                     child: new Text(shift["Work"].toString()),
                     // margin: EdgeInsets.only(bottom: 10.0),
                     height: 25,
+                    */
+                      child: Container(
+                    width: double.infinity,
+                    padding: EdgeInsets.all(0),
+                    //height: 25.0,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(50),
+                    ),
+                    child: TextButton(
+                        child: new Text(shifts[index]["Work"].toString()),
+                        style: ElevatedButton.styleFrom(
+                          onPrimary: Colors.teal,
+                        ),
+                        onPressed: () async {
+                          logger.i(shifts[index]["Work"]);
+                          await openShiftDialog(
+                              context,
+                              shifts[index]["WorkID"],
+                              shifts[index]["UserID"],
+                              shifts[index]["Date"],
+                              shifts[index]["Weather"],
+                              shifts[index]["Time"]);
+                        }),
                   ))
                 ]),
         ]);

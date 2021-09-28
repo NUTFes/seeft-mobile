@@ -24,36 +24,35 @@ class _MyShiftPageState extends State<MyShiftPagePrepationDayRainy> {
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
     return FutureBuilder(
-        future: getData(),
-        builder: (ctx, snapshot) {
-          if (snapshot.connectionState == AsyncSnapshot.waiting()) {
-            logger.w("message");
-          }
-          if (!snapshot.hasData) {
-            return CircularProgressIndicator();
-          }
-          return Container(
-              padding: const EdgeInsets.all(40.0),
-              child: SingleChildScrollView(
-                child: Column(
-                  children: <Widget>[
-                    Container(
-                        // height: size.height - 200,
-                        // width: size.width - 80,
-                        // padding: const EdgeInsets.all(10.0),
-                        // decoration: BoxDecoration(
-                        //   border: Border.all(color: Colors.black),
-                        // ),
-                        // child: _contents(size, snapshot.data)),
-                        child: table.shiftTable(snapshot.data)),
-                  ],
-                ),
-              ));
-        },
+      future: getData(),
+      builder: (ctx, snapshot) {
+        if (snapshot.connectionState == AsyncSnapshot.waiting()) {
+          logger.w("message");
+        }
+        if (!snapshot.hasData) {
+          return CircularProgressIndicator();
+        }
+        return Container(
+            padding: const EdgeInsets.all(40.0),
+            child: SingleChildScrollView(
+              child: Column(
+                children: <Widget>[
+                  Container(
+                      // height: size.height - 200,
+                      // width: size.width - 80,
+                      // padding: const EdgeInsets.all(10.0),
+                      // decoration: BoxDecoration(
+                      //   border: Border.all(color: Colors.black),
+                      // ),
+                      // child: _contents(size, snapshot.data)),
+                      child: table.shiftTable(snapshot.data, context)),
+                ],
+              ),
+            ));
+      },
     );
   }
 }
-
 
 Future getData() async {
   try {

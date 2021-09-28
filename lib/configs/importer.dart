@@ -16,5 +16,6 @@ export 'package:seeft_mobile/utils/permanent_store.dart';
 export 'package:seeft_mobile/utils/api.dart';
 
 // widgets
+export 'package:seeft_mobile/widgets/shift_dialog.dart';
 export 'package:seeft_mobile/widgets/table.dart';
 export 'package:seeft_mobile/widgets/drawer.dart';

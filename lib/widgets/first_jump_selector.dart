@@ -56,7 +56,7 @@ class _FirstJumpSelectorState extends State<FirstJumpSelector> {
             textTheme:
                 GoogleFonts.mPlus1pTextTheme(Theme.of(context).textTheme),
             primarySwatch: Colors.teal,
-            secondaryHeaderColor: Colors.teal[900],
+            secondaryHeaderColor: Colors.teal,
             focusColor: Colors.teal,
             backgroundColor: Colors.white,
             cardColor: Colors.white,

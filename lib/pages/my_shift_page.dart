@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:seeft_mobile/configs/importer.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:http/http.dart' as http;
@@ -25,8 +23,8 @@ class _MyShiftPageState extends State<MyShiftPage>
   final List<TabInfo> _tabs = [
     TabInfo("準備日晴れ", MyShiftPagePreparationDaySunny()),
     TabInfo("準備日雨", MyShiftPagePrepationDayRainy()),
-    TabInfo("準備日晴れ", MyShiftPageCurrentDaySunny()),
-    TabInfo("準備日雨", MyShiftPageCurrentDayRainy()),
+    TabInfo("当日晴れ", MyShiftPageCurrentDaySunny()),
+    TabInfo("当日雨", MyShiftPageCurrentDayRainy()),
     TabInfo("片付け日", MyShiftPageCleanupDay()),
   ];
   late TabController _tabController;
@@ -61,64 +59,139 @@ class _MyShiftPageState extends State<MyShiftPage>
         // debug
       ),
       drawer: drawer.applicationDrawer(context),
-      /*
-      Drawer(
-          child: ListView(
-        children: <Widget>[
-          ListTile(
-            title: Text("マイシフト"),
-            leading: const Icon(Icons.dvr),
-            onTap: () => {
-              Navigator.pushNamedAndRemoveUntil(
-                  context, '/my_shift_page', (Route<dynamic> route) => false)
-            },
-          ),
-          ListTile(
-            title: Text("全体シフト"),
-            leading: Icon(Icons.dynamic_feed),
-            onTap: () => {
-              Navigator.pushNamedAndRemoveUntil(
-                  context, '/all_shift_page', (Route<dynamic> route) => false)
-            },
-          ),
-          ListTile(
-            title: Text("マニュアル一覧"),
-            leading: Icon(Icons.list_alt),
-            onTap: () => {
-              Navigator.pushNamedAndRemoveUntil(
-                  context, '/manual_list_page', (Route<dynamic> route) => false)
-            },
-          ),
-          ListTile(
-            title: Text("タイムスケジュール"),
-            leading: Icon(Icons.schedule),
-            onTap: () => {
-              Navigator.pushNamedAndRemoveUntil(
-                  context, '/schedule_page', (Route<dynamic> route) => false)
-            },
-          ),
-          ListTile(
-            title: Text("本部連絡先"),
-            leading: Icon(Icons.contact_phone),
-            onTap: () => {
-              Navigator.pushNamedAndRemoveUntil(
-                  context, '/contact_page', (Route<dynamic> route) => false)
-            },
-          ),
-          ListTile(
-            title: Text("再ログイン"),
-            leading: Icon(Icons.login),
-            onTap: () => {
-              Navigator.pushNamedAndRemoveUntil(
-                  context, '/', (Route<dynamic> route) => false)
-            },
-          ),
-        ],
-      )),
-      */
       body: TabBarView(
           controller: _tabController,
           children: _tabs.map((tab) => tab.widget).toList()),
     );
   }
 }
+
+/*
+  @override
+  Widget build(BuildContext context) {
+    final Size size = MediaQuery.of(context).size;
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('マイシフト'),
+        actions: <Widget>[],
+        bottom: PreferredSize(
+          child: TabBar(
+            isScrollable: true,
+            tabs: _tabs.map((TabInfo tab) {
+              return Tab(text: tab.label);
+            }).toList(),
+            controller: _tabController,
+          ),
+          preferredSize: Size.fromHeight(30.0),
+        ),
+        // debug
+      ),
+      drawer: drawer.applicationDrawer(context),
+      body: FutureBuilder(
+        future: getData(),
+        builder: (ctx, snapshot) {
+          if (snapshot.connectionState == AsyncSnapshot.waiting()) {
+            logger.w("message");
+          }
+          if (!snapshot.hasData) {
+            return CircularProgressIndicator();
+          }
+          return Container(
+              padding: const EdgeInsets.all(40.0),
+              child: SingleChildScrollView(
+                child: Column(
+                  children: <Widget>[
+                    Container(
+                        // height: size.height - 200,
+                        // width: size.width - 80,
+                        // padding: const EdgeInsets.all(10.0),
+                        // decoration: BoxDecoration(
+                        //   border: Border.all(color: Colors.black),
+                        // ),
+                        // child: _contents(size, snapshot.data)),
+                        child: _table(snapshot.data, context)),
+                  ],
+                ),
+              ));
+        },
+      ),
+    );
+  }
+}
+
+Widget _table(var shifts, context) {
+  return Table(
+      border: TableBorder.all(color: Colors.white),
+      columnWidths: const <int, TableColumnWidth>{
+        // 0: IntrinsicColumnWidth(),
+        0: FlexColumnWidth(1),
+        1: FlexColumnWidth(10),
+        // 2: FixedColumnWidth(100.0),
+      },
+      defaultVerticalAlignment: TableCellVerticalAlignment.middle,
+      children: [
+        TableRow(decoration: BoxDecoration(color: Colors.green[50]), children: [
+          TableCell(
+              child: Container(
+            child: Text("日時"),
+            alignment: Alignment.center,
+          )),
+          TableCell(
+            child: Container(
+              child: Text("場所"),
+              alignment: Alignment.center,
+            ),
+          )
+        ]),
+        for (var shift in shifts)
+          TableRow(
+              decoration: BoxDecoration(color: Colors.grey[200]),
+              children: [
+                TableCell(
+                    child: Container(
+                  alignment: Alignment.center,
+                  child: new Text(shift["Time"].toString()),
+                )),
+                TableCell(
+                    child: Container(
+                  width: double.infinity,
+                  height: 54.0,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: TextButton(
+                      child: new Text(shift["Work"].toString()),
+                      style: ElevatedButton.styleFrom(
+                        onPrimary: Colors.teal,
+                      ),
+                      onPressed: () async {
+                        openShiftDialog(context);
+                      }),
+                  /*
+                  alignment: Alignment.center,
+                  child: new Text(shift["Work"].toString()),
+                  // margin: EdgeInsets.only(bottom: 10.0),
+                  height: 25,
+                  */
+                ))
+              ]),
+      ]);
+}
+
+Future getData() async {
+  try {
+    /*
+    var userID = await store.getUserID();
+    var res = await api.getMyShift(userID.toString());
+    */
+
+    var testUserID = 108;
+    var res = await api.getMyShift(testUserID.toString());
+
+    return res;
+  } catch (err) {
+    logger.e('don`t response. error message: $err');
+  }
+}
+=======
+      */
