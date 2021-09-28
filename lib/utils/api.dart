@@ -69,6 +69,30 @@ class Api {
     }
   }
 
+  // 準備日シフト
+  Future getMyShiftPreparationDay(id) async {
+    String url = constant.apiUrl + 'shift/' + id + '/preparationDay';
+    try {
+      return await get(url);
+    } catch (err) {
+      logger.e(err);
+      // calling api.get みたいに呼び出し元参照できるようにしたい
+      throw err;
+    }
+  }
+
+  // 当日シフト
+  Future getMyShiftCurrentDay(id) async {
+    String url = constant.apiUrl + 'shift/' + id + '/currentDay';
+    try {
+      return await get(url);
+    } catch (err) {
+      logger.e(err);
+      // calling api.get みたいに呼び出し元参照できるようにしたい
+      throw err;
+    }
+  }
+
   // 準備日晴れシフト
   Future getMyShiftPreparationDaySunny(id) async {
     String url = constant.apiUrl + 'shift/' + id + '/preparationDay' + '/sunny';
@@ -157,10 +181,6 @@ class Api {
 
   // Get Shift Detail
   Future shiftDetail(workId, userId, date, weather, time) async {
-    logger.w(workId);
-    logger.w(userId);
-    logger.w(date);
-    logger.w(weather);
     logger.w(time);
     var url = constant.apiUrl +
         "/work/" +

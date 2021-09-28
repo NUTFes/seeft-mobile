@@ -1,11 +1,15 @@
 import 'package:seeft_mobile/configs/importer.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:http/http.dart' as http;
+import 'package:seeft_mobile/pages/my_shift_page_preparation_day.dart';
+import 'package:seeft_mobile/pages/my_shift_page_current_day.dart';
+/*
 import 'package:seeft_mobile/pages/my_shift_page_preparation_day_sunny.dart';
 import 'package:seeft_mobile/pages/my_shift_page_preparation_day_rainy.dart';
 import 'package:seeft_mobile/pages/my_shift_page_current_day_sunny.dart';
 import 'package:seeft_mobile/pages/my_shift_page_current_day_rainy.dart';
 import 'package:seeft_mobile/pages/my_shift_page_cleanup_day.dart';
+*/
 
 class MyShiftPage extends StatefulWidget {
   @override
@@ -21,11 +25,8 @@ class TabInfo {
 class _MyShiftPageState extends State<MyShiftPage>
     with SingleTickerProviderStateMixin {
   final List<TabInfo> _tabs = [
-    TabInfo("準備日晴れ", MyShiftPagePreparationDaySunny()),
-    TabInfo("準備日雨", MyShiftPagePrepationDayRainy()),
-    TabInfo("当日晴れ", MyShiftPageCurrentDaySunny()),
-    TabInfo("当日雨", MyShiftPageCurrentDayRainy()),
-    TabInfo("片付け日", MyShiftPageCleanupDay()),
+    TabInfo("準備日", MyShiftPagePreparationDay()),
+    TabInfo("当日", MyShiftPageCurrentDay()),
   ];
   late TabController _tabController;
 // notification関連をinitStateに書き出さなきゃいけないので書いてたけどutilとかに書いてもいいかもね
