@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:logger/logger.dart';
 import 'package:seeft_mobile/configs/importer.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -43,7 +42,9 @@ openShiftDialog(
               centerTitle: true,
               actions: <Widget>[
                 IconButton(
-                  onPressed: () async {},
+                  onPressed: () async {
+                    _launchURL(resURL);
+                  },
                   icon: Icon(Icons.wrap_text),
                   color: Colors.orangeAccent[100],
                 ),
