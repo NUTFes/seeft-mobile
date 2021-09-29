@@ -57,18 +57,18 @@ class ShiftTable {
                     height: 25,
                     */
                       child: Container(
+                    //color: HexColor(shifts[index]["Color"].toString()),
                     width: double.infinity,
+                    height: 40,
+                    //color: HexColor(shifts[index]["Color"].toString()),
                     padding: EdgeInsets.all(0),
                     //height: 25.0,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(50),
-                    ),
-                    child: TextButton(
-                        child: new Text(shifts[index]["Work"].toString()),
-                        style: ElevatedButton.styleFrom(onPrimary: Colors.amber
-                            //HexColor(shifts[index]["Color"].toString()),
-                            ),
-                        onPressed: () async {
+                    child: new Material(
+                      type: MaterialType.button,
+                      color: HexColor(shifts[index]["Color"]),
+                      child: InkWell(
+                        splashColor: Colors.orangeAccent,
+                        onTap: () async {
                           if (shifts[index]["Work"] != "") {
                             logger.i(shifts[index]["Work"]);
                             await openShiftDialog(
@@ -79,7 +79,15 @@ class ShiftTable {
                                 shifts[index]["Weather"],
                                 shifts[index]["Time"]);
                           }
-                        }),
+                        },
+                        //child: Center(child: new Text(shifts[index]["Work"].toString())),
+                        child: Container(
+                          child: Center(
+                              child:
+                                  new Text(shifts[index]["Work"].toString())),
+                        ),
+                      ),
+                    ),
                   ))
                 ]),
         ]);
