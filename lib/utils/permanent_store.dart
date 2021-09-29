@@ -25,7 +25,13 @@ class PermanentStore {
 
   isUserID() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
-    final isUserID = prefs.getInt('userID') != 0;
+    var userID = prefs.getInt('userID');
+    var isUserID = true;
+    if (userID == null) {
+       isUserID = false;
+    } else if (userID == 0) {
+       isUserID = false;
+    }
     logger.d('load isUserID parmeanent store: $isUserID');
     return isUserID;
   }
