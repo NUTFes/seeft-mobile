@@ -52,7 +52,7 @@ class ApplicationDrawer {
           leading: Icon(Icons.login),
           onTap: () => {
             Navigator.pushNamedAndRemoveUntil(
-                context, '/', (Route<dynamic> route) => false)
+                context, '/signin', (Route<dynamic> route) => false)
           },
         ),
       ],

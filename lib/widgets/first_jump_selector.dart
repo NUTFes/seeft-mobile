@@ -22,6 +22,9 @@ class _FirstJumpSelectorState extends State<FirstJumpSelector> {
 
   Future<bool> getPrefRead() async {
     final _isUserID = await store.isUserID();
+    final _userID = await store.getUserID();
+    logger.w(_userID);
+    logger.w(_isUserID);
     return _isUserID;
   }
 
@@ -34,23 +37,17 @@ class _FirstJumpSelectorState extends State<FirstJumpSelector> {
       builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
         // var hasData = snapshot;
         logger.i('===============================');
-        logger.i(store.isUserID());
-
-        /*
-        if (hasData == false) {
-          logger.w('can\'t final snapshot data');
-          return CircularProgressIndicator();
-        }
-        */
+        logger.i(snapshot.connectionState);
 
         var isUserID = snapshot.data;
+        logger.i(snapshot.connectionState);
         var homeWidget;
         if (isUserID!) {
           logger.i('select SignInPage.');
-          homeWidget = '/';
+          homeWidget = '/my_shift_page';
         } else {
           logger.i('select MainPage.');
-          homeWidget = '/my_shift_page';
+          homeWidget = '/signin';
         }
 
         var app = new MaterialApp(
@@ -74,7 +71,7 @@ class _FirstJumpSelectorState extends State<FirstJumpSelector> {
           //home: homeWidget,
           initialRoute: homeWidget,
           routes: {
-            '/': (context) => SignInPage(),
+            '/signin': (context) => SignInPage(),
             '/my_shift_page': (context) => MyShiftPage(),
             '/all_shift_page': (context) => AllShiftPage(),
             '/manual_list_page': (context) => ManualListPage(),
