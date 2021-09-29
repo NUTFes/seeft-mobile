@@ -9,7 +9,7 @@ class ShiftTable {
         columnWidths: const <int, TableColumnWidth>{
           // 0: IntrinsicColumnWidth(),
           0: FlexColumnWidth(1),
-          1: FlexColumnWidth(7),
+          1: FlexColumnWidth(3),
           // 2: FixedColumnWidth(100.0),
         },
         defaultVerticalAlignment: TableCellVerticalAlignment.middle,
