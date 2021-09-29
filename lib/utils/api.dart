@@ -153,6 +153,18 @@ class Api {
     }
   }
 
+  // マニュアル一覧
+  Future getAllManual() async {
+    String url = constant.apiUrl + 'work/list';
+    try {
+      return await get(url);
+    } catch (err) {
+      logger.e(err);
+      // calling api.get みたいに呼び出し元参照できるようにしたい
+      throw err;
+    }
+  }
+
   // POST Sign In (リダイレクションエラーが返ってくるため不使用)
   Future postSignIn(request) async {
     var url = Uri.parse(constant.apiUrl + 'auth');

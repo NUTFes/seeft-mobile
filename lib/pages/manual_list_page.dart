@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:seeft_mobile/configs/importer.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:http/http.dart' as http;
+import 'package:url_launcher/url_launcher.dart';
 
 class ManualListPage extends StatefulWidget {
   @override
@@ -14,6 +15,7 @@ class _ManualListPageState extends State<ManualListPage> {
 
 //  FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin;
 //  NotificationDetails platformChannelSpecifics;
+  int manualLength = 0;
 
   @override
   void initState() {
@@ -89,83 +91,56 @@ class _ManualListPageState extends State<ManualListPage> {
             logger.w("message");
           }
           if (!snapshot.hasData) {
-            return CircularProgressIndicator();
+            const Center(child: CircularProgressIndicator());
           }
+          var manualList = snapshot.data;
           return Container(
-              padding: const EdgeInsets.all(40.0),
-              child: SingleChildScrollView(
-                child: Column(
-                  children: <Widget>[
-                    Container(
-                        // height: size.height - 200,
-                        // width: size.width - 80,
-                        // padding: const EdgeInsets.all(10.0),
-                        // decoration: BoxDecoration(
-                        //   border: Border.all(color: Colors.black),
-                        // ),
-                        // child: _contents(size, snapshot.data)),
-                        child: _table(snapshot.data)),
-                  ],
+            padding: const EdgeInsets.all(40.0),
+            child: Column(
+              children: <Widget>[
+                Flexible(
+                  child: ListView.builder(
+                    itemCount: manualLength,
+                    itemBuilder: (BuildContext context, int index) {
+                      return Container(
+                          height: 40,
+                          child: _manualItem(snapshot.data, index, context));
+                    },
+                  ),
                 ),
-              ));
+              ],
+            ),
+          );
         },
       ),
     );
   }
-}
 
-Widget _table(var shifts) {
-  return Table(
-      border: TableBorder.all(color: Colors.black),
-      columnWidths: const <int, TableColumnWidth>{
-        // 0: IntrinsicColumnWidth(),
-        0: FlexColumnWidth(1),
-        1: FlexColumnWidth(10),
-        // 2: FixedColumnWidth(100.0),
-      },
-      defaultVerticalAlignment: TableCellVerticalAlignment.middle,
-      children: [
-        TableRow(children: [
-          TableCell(
-              child: Container(
-            child: Text("日時"),
-            alignment: Alignment.center,
-            color: Colors.lightGreen,
-          )),
-          TableCell(
-            child: Container(
-              child: Text("場所"),
-              alignment: Alignment.center,
-              color: Colors.lightGreen,
-            ),
-          )
-        ]),
-        for (var shift in shifts)
-          TableRow(
-              decoration: BoxDecoration(color: Colors.grey[200]),
-              children: [
-                TableCell(
-                    child: Container(
-                  alignment: Alignment.center,
-                  child: new Text(shift["Time"].toString()),
-                )),
-                TableCell(
-                    child: Container(
-                  alignment: Alignment.center,
-                  child: new Text(shift["Work"].toString()),
-                  // margin: EdgeInsets.only(bottom: 10.0),
-                  height: 25,
-                ))
-              ]),
-      ]);
-}
-
-Future getData() async {
-  try {
-    var userID = await store.getUserID();
-    var res = await api.getMyShift(userID.toString());
-    return res;
-  } catch (err) {
-    logger.e('don`t response. error message: $err');
+  Widget _manualItem(var manuals, index, context) {
+    return Container(
+      decoration: new BoxDecoration(
+          border:
+              new Border(bottom: BorderSide(width: 1.0, color: Colors.grey))),
+      child: ListTile(
+        title: Text(
+          manuals[index]["Name"].toString(),
+          style: TextStyle(color: Colors.black, fontSize: 14.0),
+        ),
+        onTap: () async {
+          if (await canLaunch(manuals[index]["URL"].toString())) {
+            await launch((manuals[index]["URL"].toString()));
+          }
+        },
+      ),
+    );
+  }
+  Future getData() async {
+    try {
+      var res = await api.getAllManual();
+      manualLength = res.length;
+      return res;
+    } catch (err) {
+      logger.e('don`t response. error message: $err');
+    }
   }
 }
