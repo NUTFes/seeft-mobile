@@ -5,7 +5,7 @@ final ShiftTable table = ShiftTable();
 class ShiftTable {
   Widget shiftTable(var shifts, context) {
     return Table(
-        border: TableBorder.all(color: Colors.black),
+        border: TableBorder.all(color: Colors.black26),
         columnWidths: const <int, TableColumnWidth>{
           // 0: IntrinsicColumnWidth(),
           0: FlexColumnWidth(1),
@@ -17,15 +17,25 @@ class ShiftTable {
           TableRow(children: [
             TableCell(
                 child: Container(
-              child: Text("日時"),
+              child: Text(
+                "日時",
+                style: TextStyle(
+                  color: Colors.white,
+                ),
+              ),
               alignment: Alignment.center,
-              color: Colors.teal,
+              color: Colors.orangeAccent,
             )),
             TableCell(
               child: Container(
-                child: Text("シフト"),
+                child: Text(
+                  "シフト",
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
+                ),
                 alignment: Alignment.center,
-                color: Colors.teal,
+                color: Colors.orangeAccent,
               ),
             )
           ]),
@@ -47,29 +57,51 @@ class ShiftTable {
                     height: 25,
                     */
                       child: Container(
+                    //color: HexColor(shifts[index]["Color"].toString()),
                     width: double.infinity,
+                    height: 40,
+                    //color: HexColor(shifts[index]["Color"].toString()),
                     padding: EdgeInsets.all(0),
                     //height: 25.0,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(50),
-                    ),
-                    child: TextButton(
-                        child: new Text(shifts[index]["Work"].toString()),
-                        style: ElevatedButton.styleFrom(
-                          onPrimary: Colors.teal,
+                    child: new Material(
+                      type: MaterialType.button,
+                      color: HexColor(shifts[index]["Color"]),
+                      child: InkWell(
+                        splashColor: Colors.orangeAccent,
+                        onTap: () async {
+                          if (shifts[index]["Work"] != "") {
+                            logger.i(shifts[index]["Work"]);
+                            await openShiftDialog(
+                                context,
+                                shifts[index]["WorkID"],
+                                shifts[index]["UserID"],
+                                shifts[index]["Date"],
+                                shifts[index]["Weather"],
+                                shifts[index]["Time"]);
+                          }
+                        },
+                        //child: Center(child: new Text(shifts[index]["Work"].toString())),
+                        child: Container(
+                          child: Center(
+                              child:
+                                  new Text(shifts[index]["Work"].toString())),
                         ),
-                        onPressed: () async {
-                          logger.i(shifts[index]["Work"]);
-                          await openShiftDialog(
-                              context,
-                              shifts[index]["WorkID"],
-                              shifts[index]["UserID"],
-                              shifts[index]["Date"],
-                              shifts[index]["Weather"],
-                              shifts[index]["Time"]);
-                        }),
+                      ),
+                    ),
                   ))
                 ]),
         ]);
   }
+}
+
+class HexColor extends Color {
+  static int _getColorFromHex(String hexColor) {
+    hexColor = hexColor.toUpperCase().replaceAll('#', '');
+    if (hexColor.length == 6) {
+      hexColor = 'FF' + hexColor;
+    }
+    return int.parse(hexColor, radix: 16);
+  }
+
+  HexColor(final String hexColor) : super(_getColorFromHex(hexColor));
 }
