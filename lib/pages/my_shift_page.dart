@@ -4,6 +4,7 @@ import 'package:http/http.dart' as http;
 import 'package:seeft_mobile/pages/my_shift_page_preparation_day.dart';
 import 'package:seeft_mobile/pages/my_shift_page_current_day.dart';
 import 'package:seeft_mobile/pages/pre_preparation_day_shift.dart';
+import 'package:seeft_mobile/pages/cleanup_day_time_schedule.dart';
 /*
 import 'package:seeft_mobile/pages/my_shift_page_preparation_day_sunny.dart';
 import 'package:seeft_mobile/pages/my_shift_page_preparation_day_rainy.dart';
@@ -29,6 +30,7 @@ class _MyShiftPageState extends State<MyShiftPage>
     TabInfo("準々備日", PrePreparationDayShift()),
     TabInfo("準備日", MyShiftPagePreparationDay()),
     TabInfo("当日", MyShiftPageCurrentDay()),
+    TabInfo("片付け日", CleanUpDayTimeSchedule()),
   ];
   late TabController _tabController;
 // notification関連をinitStateに書き出さなきゃいけないので書いてたけどutilとかに書いてもいいかもね
