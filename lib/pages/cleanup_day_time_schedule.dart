@@ -396,7 +396,7 @@ class _MyShiftPageState extends State<CleanUpDayTimeSchedule> {
                           TableCell(
                             child: Container(
                               child: Text(
-                                "10",
+                                "10人",
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                   color: Colors.white,
@@ -567,7 +567,7 @@ class _MyShiftPageState extends State<CleanUpDayTimeSchedule> {
                             TableCell(
                               child: Container(
                                 child: new Text(
-                                  "本部\n\n本部",
+                                  "本部",
                                   textAlign: TextAlign.center,
                                 ),
                               ),
@@ -632,7 +632,7 @@ class _MyShiftPageState extends State<CleanUpDayTimeSchedule> {
                             TableCell(
                                 child: Container(
                               child: new Text(
-                                "本部\n\n本部",
+                                "本部",
                                 textAlign: TextAlign.center,
                               ),
                             )),
@@ -694,7 +694,7 @@ class _MyShiftPageState extends State<CleanUpDayTimeSchedule> {
                             TableCell(
                                 child: Container(
                               child: new Text(
-                                "本部\n\n本部",
+                                "本部",
                                 textAlign: TextAlign.center,
                               ),
                             )),
@@ -756,7 +756,7 @@ class _MyShiftPageState extends State<CleanUpDayTimeSchedule> {
                             TableCell(
                                 child: Container(
                               child: new Text(
-                                "本部\n\n本部",
+                                "本部",
                                 textAlign: TextAlign.center,
                               ),
                             )),
@@ -818,7 +818,7 @@ class _MyShiftPageState extends State<CleanUpDayTimeSchedule> {
                             TableCell(
                                 child: Container(
                               child: new Text(
-                                "本部\n\n本部",
+                                "本部",
                                 textAlign: TextAlign.center,
                               ),
                             )),
@@ -880,7 +880,7 @@ class _MyShiftPageState extends State<CleanUpDayTimeSchedule> {
                             TableCell(
                                 child: Container(
                               child: new Text(
-                                "本部\n\n本部",
+                                "本部",
                                 textAlign: TextAlign.center,
                               ),
                             )),
@@ -1066,7 +1066,7 @@ class _MyShiftPageState extends State<CleanUpDayTimeSchedule> {
                             TableCell(
                                 child: Container(
                               child: new Text(
-                                "本部\n\n本部",
+                                "本部",
                                 textAlign: TextAlign.center,
                               ),
                             )),
@@ -1252,7 +1252,7 @@ class _MyShiftPageState extends State<CleanUpDayTimeSchedule> {
                             TableCell(
                                 child: Container(
                               child: new Text(
-                                "本部\n\n本部",
+                                "本部",
                                 textAlign: TextAlign.center,
                               ),
                             )),
