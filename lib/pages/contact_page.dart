@@ -3,6 +3,8 @@ import 'dart:developer';
 import 'package:seeft_mobile/configs/importer.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:http/http.dart' as http;
+import 'package:url_launcher/url_launcher.dart';
+import 'package:flutter/material.dart';
 
 class ContactPage extends StatefulWidget {
   @override
@@ -14,12 +16,6 @@ class _ContactPageState extends State<ContactPage> {
 
 //  FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin;
 //  NotificationDetails platformChannelSpecifics;
-
-  @override
-  void initState() {
-    super.initState();
-  }
-
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
@@ -29,143 +25,81 @@ class _ContactPageState extends State<ContactPage> {
         actions: <Widget>[],
         // debug
       ),
-      drawer: Drawer(
-          child: ListView(
-        children: <Widget>[
-          ListTile(
-            title: Text("マイシフト"),
-            leading: const Icon(Icons.dvr),
-            onTap: () => {
-              Navigator.pushNamedAndRemoveUntil(
-                  context, '/my_shift_page', (Route<dynamic> route) => false)
-            },
-          ),
-          ListTile(
-            title: Text("全体シフト"),
-            leading: Icon(Icons.dynamic_feed),
-            onTap: () => {
-              Navigator.pushNamedAndRemoveUntil(
-                  context, '/all_shift_page', (Route<dynamic> route) => false)
-            },
-          ),
-          ListTile(
-            title: Text("マニュアル一覧"),
-            leading: Icon(Icons.list_alt),
-            onTap: () => {
-              Navigator.pushNamedAndRemoveUntil(
-                  context, '/manual_list_page', (Route<dynamic> route) => false)
-            },
-          ),
-          ListTile(
-            title: Text("タイムスケジュール"),
-            leading: Icon(Icons.schedule),
-            onTap: () => {
-              Navigator.pushNamedAndRemoveUntil(
-                  context, '/schedule_page', (Route<dynamic> route) => false)
-            },
-          ),
-          ListTile(
-            title: Text("本部連絡先"),
-            leading: Icon(Icons.contact_phone),
-            onTap: () => {
-              Navigator.pushNamedAndRemoveUntil(
-                  context, '/contact_page', (Route<dynamic> route) => false)
-            },
-          ),
-          ListTile(
-            title: Text("再ログイン"),
-            leading: Icon(Icons.login),
-            onTap: () => {
-              Navigator.pushNamedAndRemoveUntil(
-                  context, '/', (Route<dynamic> route) => false)
-            },
-          ),
-        ],
-      )),
-      body: FutureBuilder(
-        future: getData(),
-        builder: (ctx, snapshot) {
-          if (snapshot.connectionState == AsyncSnapshot.waiting()) {
-            logger.w("message");
-          }
-          if (!snapshot.hasData) {
-            return CircularProgressIndicator();
-          }
-          return Container(
-              padding: const EdgeInsets.all(40.0),
-              child: SingleChildScrollView(
-                child: Column(
-                  children: <Widget>[
-                    Container(
-                        // height: size.height - 200,
-                        // width: size.width - 80,
-                        // padding: const EdgeInsets.all(10.0),
-                        // decoration: BoxDecoration(
-                        //   border: Border.all(color: Colors.black),
-                        // ),
-                        // child: _contents(size, snapshot.data)),
-                        child: _table(snapshot.data)),
-                  ],
+      drawer: drawer.applicationDrawer(context),
+      body:Container(
+        alignment: Alignment.center,
+        padding: const EdgeInsets.all(40.0),
+        child: Column(
+              children: <Widget>[
+                Text(
+                  "当日の対応などでマニュアルでは\n対応できないことがあったときは\n本部へ連絡して指示を仰いでください。\n",
+                  textAlign: TextAlign.center,
+                  ),
+                Text(
+                  "本部への緊急連絡先は以下になります。\n",
+                  textAlign: TextAlign.center,
+                  ),
+                Text(
+                  "副委員長　佐々木大穀",
+                  textAlign: TextAlign.center,
                 ),
-              ));
-        },
-      ),
+                TextButton(
+                  onPressed: _openPhoneApp,
+                  child: Text(
+                    "080-6083-6443\n",
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+                SizedBox(
+                  child: Container(
+                  height: 100,
+                  width: 100,
+                  ),
+                ),
+                Text(
+                  "SeeFTの使用方法やバグなどの\nお問い合わせは以下へお願い致します。\n",
+                  textAlign: TextAlign.center,
+                ),
+                Text(
+                  "情報局長　真下稔央",
+                  textAlign: TextAlign.center,
+                ),
+                TextButton(
+                  onPressed: _openMailApp,
+                  child: Text(
+                    "t.mashimo.nutfes@gmail.com\n",
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+              ],
+            ),
+      )
     );
   }
 }
 
-Widget _table(var shifts) {
-  return Table(
-      border: TableBorder.all(color: Colors.black),
-      columnWidths: const <int, TableColumnWidth>{
-        // 0: IntrinsicColumnWidth(),
-        0: FlexColumnWidth(1),
-        1: FlexColumnWidth(10),
-        // 2: FixedColumnWidth(100.0),
-      },
-      defaultVerticalAlignment: TableCellVerticalAlignment.middle,
-      children: [
-        TableRow(children: [
-          TableCell(
-              child: Container(
-            child: Text("日時"),
-            alignment: Alignment.center,
-            color: Colors.lightGreen,
-          )),
-          TableCell(
-            child: Container(
-              child: Text("場所"),
-              alignment: Alignment.center,
-              color: Colors.lightGreen,
-            ),
-          )
-        ]),
-        for (var shift in shifts)
-          TableRow(
-              decoration: BoxDecoration(color: Colors.grey[200]),
-              children: [
-                TableCell(
-                    child: Container(
-                  alignment: Alignment.center,
-                  child: new Text(shift["Time"].toString()),
-                )),
-                TableCell(
-                    child: Container(
-                  alignment: Alignment.center,
-                  child: new Text(shift["Work"].toString()),
-                  // margin: EdgeInsets.only(bottom: 10.0),
-                  height: 25,
-                ))
-              ]),
-      ]);
-}
-
-Future getData() async {
-  try {
-    var userID = await store.getUserID();
-    var res = await api.getMyShift(userID.toString());
-    return res;
-  } catch (err) {
-    logger.e('don`t response. error message: $err');
+void _openPhoneApp() {
+    const tel = '08060386443';
+    _launchURL(
+      'tel:' + tel,
+    );
   }
-}
+
+  _openMailApp() async {
+    final title = Uri.encodeComponent('タイトル');
+    final body = Uri.encodeComponent('本文');
+    const mailAddress = 't.mashimo.nutfes@gmail.com';
+
+    return _launchURL(
+      'mailto:$mailAddress?subject=$title&body=$body',
+    );
+  }
+
+  Future<void> _launchURL(String url) async {
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      final Error error = ArgumentError('Could not launch $url');
+      throw error;
+    }
+  }
