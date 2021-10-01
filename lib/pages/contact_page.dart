@@ -46,7 +46,7 @@ class _ContactPageState extends State<ContactPage> {
                 TextButton(
                   onPressed: _openPhoneApp,
                   child: Text(
-                    "080-6083-6443\n",
+                    "080-6038-6443\n",
                     textAlign: TextAlign.center,
                   ),
                 ),
