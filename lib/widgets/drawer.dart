@@ -1,4 +1,5 @@
 import 'package:seeft_mobile/configs/importer.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 final ApplicationDrawer drawer = ApplicationDrawer();
 
@@ -53,6 +54,19 @@ class ApplicationDrawer {
           onTap: () => {
             Navigator.pushNamedAndRemoveUntil(
                 context, '/signin', (Route<dynamic> route) => false)
+          },
+        ),
+        ListTile(
+          title: Text("ヘルプ"),
+          leading: Icon(Icons.help),
+          onTap: () async{
+            var url = "https://docs.google.com/document/d/1siErvaPQnut7R0wklAmuPY5drDDkl19iXZ7KgpH1TMw/edit?usp=sharing";
+            if (await canLaunch(url)) {
+              await launch(url);
+            } else {
+              final Error error = ArgumentError('Could not launch $url');
+              throw error;
+            }
           },
         ),
       ],

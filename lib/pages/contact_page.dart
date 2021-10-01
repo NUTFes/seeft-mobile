@@ -50,6 +50,21 @@ class _ContactPageState extends State<ContactPage> {
                     textAlign: TextAlign.center,
                   ),
                 ),
+                Text(
+                  "副委員長が通話中でつながらなかった場合は以下にご連絡ください\n",
+                  textAlign: TextAlign.center,
+                  ),
+                Text(
+                  "委員長　水上椋介",
+                  textAlign: TextAlign.center,
+                ),
+                TextButton(
+                  onPressed: _openPhoneAppMizukami,
+                  child: Text(
+                    "080-6350-9969\n",
+                    textAlign: TextAlign.center,
+                  ),
+                ),
                 SizedBox(
                   child: Container(
                   height: 100,
@@ -80,6 +95,12 @@ class _ContactPageState extends State<ContactPage> {
 
 void _openPhoneApp() {
     const tel = '08060386443';
+    _launchURL(
+      'tel:' + tel,
+    );
+  }
+void _openPhoneAppMizukami() {
+    const tel = '08063509969';
     _launchURL(
       'tel:' + tel,
     );
