@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:seeft_mobile/widgets/first_jump_selector.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-void main() {
-  runApp(FirstJumpSelector());
-}
+import 'app.dart';
+
+void main() => runApp(
+      const ProviderScope(
+        child: App(),
+      ),
+    );
