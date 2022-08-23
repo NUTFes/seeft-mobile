@@ -2,6 +2,10 @@
 
 A new Flutter project.
 
+## Requirements
+- fvm
+- Flutter 2.10.4
+
 ## Getting Started
 
 This project is a starting point for a Flutter application.
