@@ -13,7 +13,7 @@ class _SignInPageState extends State<SignInPage> {
   _signIn() async {
     try {
       var res = await api.signIn(mail);
-      var resId = res["ID"];
+      var resId = res["id"];
       await store.setUserID(resId);
 
       // userIdをstoreにset出来てるか確認
