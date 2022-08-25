@@ -17,13 +17,16 @@ class Api {
     */
 
     final uri = Uri.parse(url);
+    logger.i(uri);
+    logger.i(json.encode(request));
     final response = await http.post(
       //final response = await ioClient.post(
       uri,
-      // body: json.encode(req),
+      body: json.encode(request),
       headers: {
-        HttpHeaders.contentTypeHeader: 'application/json',
-        //"Content-Type": "application/json",
+        //HttpHeaders.contentTypeHeader: 'application/json',
+        "Access-Control-Allow-Origin": "*",
+        "Content-Type": "application/json",
         //"Content-Length": "<calculated when request is sent>",
       },
     );
@@ -183,7 +186,7 @@ class Api {
   // Get Sign In
   Future signIn(mail) async {
     try {
-      var url = constant.apiUrl + "auth/" + mail;
+      var url = constant.apiUrl + "auth/signin/" + mail;
       return await api.get(url);
     } catch (e) {
       logger.e('failed got.');
