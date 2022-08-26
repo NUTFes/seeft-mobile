@@ -22,7 +22,8 @@ class _SignInPageState extends State<SignInPage> {
         infoText = "Your ID : ${userID}";
       });
       Navigator.pushNamedAndRemoveUntil(
-          context, '/my_shift_page', (Route<dynamic> route) => false);
+        context, '/wait_page', (Route<dynamic> route) => false);
+//          context, '/my_shift_page', (Route<dynamic> route) => false);
     } catch (e) {
       setState(() {
         ScaffoldMessenger.of(context).showSnackBar(const SnackBar(

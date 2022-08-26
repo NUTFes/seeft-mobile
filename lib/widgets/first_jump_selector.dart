@@ -7,6 +7,7 @@ import 'package:seeft_mobile/pages/all_shift_page.dart';
 import 'package:seeft_mobile/pages/manual_list_page.dart';
 import 'package:seeft_mobile/pages/schedule_page.dart';
 import 'package:seeft_mobile/pages/contact_page.dart';
+import 'package:seeft_mobile/pages/wait_page.dart';
 
 class FirstJumpSelector extends StatefulWidget {
   @override
@@ -43,8 +44,10 @@ class _FirstJumpSelectorState extends State<FirstJumpSelector> {
         logger.i(snapshot.connectionState);
         var homeWidget;
         if (isUserID!) {
-          logger.i('select SignInPage.');
-          homeWidget = '/my_shift_page';
+          // logger.i('select SignInPage.');
+          // homeWidget = '/my_shift_page';
+          logger.i('select WaitPage.');
+          homeWidget = '/wait_page';
         } else {
           logger.i('select MainPage.');
           homeWidget = '/signin';
@@ -77,6 +80,7 @@ class _FirstJumpSelectorState extends State<FirstJumpSelector> {
             '/manual_list_page': (context) => ManualListPage(),
             '/schedule_page': (context) => SchedulePage(),
             '/contact_page': (context) => ContactPage(),
+            '/wait_page': (context) => WaitPage(),
           },
         );
 
