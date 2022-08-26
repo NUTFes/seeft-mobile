@@ -12,40 +12,40 @@ class ApplicationDrawer {
           title: Text("マイシフト"),
           leading: const Icon(Icons.dvr),
           onTap: () => {
-            Navigator.pushNamedAndRemoveUntil(
-                context, '/my_shift_page', (Route<dynamic> route) => false)
+            // Navigator.pushNamedAndRemoveUntil(
+            //     context, '/my_shift_page', (Route<dynamic> route) => false)
           },
         ),
         ListTile(
           title: Text("全体シフト"),
           leading: Icon(Icons.dynamic_feed),
           onTap: () => {
-            Navigator.pushNamedAndRemoveUntil(
-                context, '/all_shift_page', (Route<dynamic> route) => false)
+            // Navigator.pushNamedAndRemoveUntil(
+            //     context, '/all_shift_page', (Route<dynamic> route) => false)
           },
         ),
         ListTile(
           title: Text("マニュアル一覧"),
           leading: Icon(Icons.list_alt),
           onTap: () => {
-            Navigator.pushNamedAndRemoveUntil(
-                context, '/manual_list_page', (Route<dynamic> route) => false)
+            // Navigator.pushNamedAndRemoveUntil(
+            //     context, '/manual_list_page', (Route<dynamic> route) => false)
           },
         ),
         ListTile(
           title: Text("タイムスケジュール"),
           leading: Icon(Icons.schedule),
           onTap: () => {
-            Navigator.pushNamedAndRemoveUntil(
-                context, '/schedule_page', (Route<dynamic> route) => false)
+            // Navigator.pushNamedAndRemoveUntil(
+            //     context, '/schedule_page', (Route<dynamic> route) => false)
           },
         ),
         ListTile(
           title: Text("本部連絡先"),
           leading: Icon(Icons.contact_phone),
           onTap: () => {
-            Navigator.pushNamedAndRemoveUntil(
-                context, '/contact_page', (Route<dynamic> route) => false)
+            // Navigator.pushNamedAndRemoveUntil(
+            //     context, '/contact_page', (Route<dynamic> route) => false)
           },
         ),
         ListTile(
