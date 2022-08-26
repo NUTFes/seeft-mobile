@@ -22,7 +22,7 @@ class _WaitPageState extends State<WaitPage> {
     final Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
-        title: const Text('マニュアル一覧'),
+        title: const Text(''),
         actions: <Widget>[],
         // debug
       ),
