@@ -46,7 +46,7 @@ class ShiftTable {
                   TableCell(
                       child: Container(
                     alignment: Alignment.center,
-                    child: new Text(shifts[index]["Time"].toString()),
+                    child: new Text(shifts[index]["time"]["time"].toString()),
                   )),
                   TableCell(
                       /*
@@ -65,26 +65,26 @@ class ShiftTable {
                     //height: 25.0,
                     child: new Material(
                       type: MaterialType.button,
-                      color: HexColor(shifts[index]["Color"]),
+                      color: HexColor(shifts[index]["task"]["color"]),
                       child: InkWell(
                         splashColor: Colors.orangeAccent,
                         onTap: () async {
-                          if (shifts[index]["Work"] != "") {
-                            logger.i(shifts[index]["Work"]);
+                          if (shifts[index]["task"] != "") {
+                            logger.i(shifts[index]["task"]);
                             await openShiftDialog(
                                 context,
-                                shifts[index]["WorkID"],
-                                shifts[index]["UserID"],
-                                shifts[index]["Date"],
-                                shifts[index]["Weather"],
-                                shifts[index]["Time"]);
+                                shifts[index]["task"]["id"],
+                                shifts[index]["user"]["id"],
+                                shifts[index]["date"]["id"],
+                                shifts[index]["weather"]["id"],
+                                shifts[index]["time"]["id"]);
                           }
                         },
                         //child: Center(child: new Text(shifts[index]["Work"].toString())),
                         child: Container(
                           child: Center(
                               child:
-                                  new Text(shifts[index]["Work"].toString())),
+                                  new Text(shifts[index]["task"]["task"].toString())),
                         ),
                       ),
                     ),
@@ -96,10 +96,13 @@ class ShiftTable {
 
 class HexColor extends Color {
   static int _getColorFromHex(String hexColor) {
-    hexColor = hexColor.toUpperCase().replaceAll('#', '');
+    // logger.d(hexColor);
+    hexColor = hexColor.toUpperCase().replaceAll('0X', '');
+    // logger.d(hexColor);
     if (hexColor.length == 6) {
       hexColor = 'FF' + hexColor;
     }
+    // logger.d(hexColor);
     return int.parse(hexColor, radix: 16);
   }
 
