@@ -96,9 +96,11 @@ class Api {
     }
   }
 
-  // 当日シフト
-  Future getMyShiftCurrentDay(id) async {
-    String url = constant.apiUrl + 'shift/' + id + '/currentDay';
+  // 当日1日目晴れシフト
+  Future getMyShiftCurrentFirstDaySunny(id) async {
+    // 一旦準備日のseedデータを使用
+    // String url = constant.apiUrl + '/shifts/users/' + id + '/dates/2/weathers/1';
+    String url = constant.apiUrl + '/shifts/users/' + id + '/dates/1/weathers/1';
     try {
       return await get(url);
     } catch (err) {
@@ -108,9 +110,11 @@ class Api {
     }
   }
 
-  // 当日晴れシフト
-  Future getMyShiftCurrentDaySunny(id) async {
-    String url = constant.apiUrl + 'shift/' + id + '/currentDay' + '/sunny';
+  // 当日1日目雨シフト
+  Future getMyShiftCurrentFirstDayRainy(id) async {
+    // 一旦準備日のseedデータを使用
+    // String url = constant.apiUrl + '/shifts/users/' + id + '/dates/2/weathers/2';
+    String url = constant.apiUrl + '/shifts/users/' + id + '/dates/1/weathers/1';
     try {
       return await get(url);
     } catch (err) {
@@ -120,9 +124,25 @@ class Api {
     }
   }
 
-  // 当日雨シフト
-  Future getMyShiftCurrentDayRainy(id) async {
-    String url = constant.apiUrl + 'shift/' + id + '/currentDay' + '/rainy';
+  // 当日2日目晴れシフト
+  Future getMyShiftCurrentSecondDaySunny(id) async {
+    // 一旦準備日のseedデータを使用
+    // String url = constant.apiUrl + '/shifts/users/' + id + '/dates/3/weathers/1';
+    String url = constant.apiUrl + '/shifts/users/' + id + '/dates/1/weathers/1';
+    try {
+      return await get(url);
+    } catch (err) {
+      logger.e(err);
+      // calling api.get みたいに呼び出し元参照できるようにしたい
+      throw err;
+    }
+  }
+
+  // 当日2日目雨シフト
+  Future getMyShiftCurrentSecondDayRainy(id) async {
+    // 一旦準備日のseedデータを使用
+    // String url = constant.apiUrl + '/shifts/users/' + id + '/dates/3/weathers/2';
+    String url = constant.apiUrl + '/shifts/users/' + id + '/dates/1/weathers/1';
     try {
       return await get(url);
     } catch (err) {
@@ -134,7 +154,9 @@ class Api {
 
   // 片付け日シフト
   Future getMyShiftCleanupDay(id) async {
-    String url = constant.apiUrl + 'shift/' + id + '/cleanupDay';
+    // 一旦準備日のseedデータを使用
+    // String url = constant.apiUrl + '/shifts/users/' + id + '/dates/4/weathers/1';
+    String url = constant.apiUrl + '/shifts/users/' + id + '/dates/1/weathers/1';
     try {
       return await get(url);
     } catch (err) {

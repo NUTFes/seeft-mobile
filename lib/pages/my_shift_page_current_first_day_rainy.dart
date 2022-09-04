@@ -57,7 +57,7 @@ class _MyShiftPageState extends State<MyShiftPageCurrentFirstDayRainy> {
 Future getData() async {
   try {
     var userID = await store.getUserID();
-    var res = await api.getMyShiftCurrentDayRainy(userID.toString());
+    var res = await api.getMyShiftCurrentFirstDayRainy(userID.toString());
     return res;
   } catch (err) {
     logger.e('don`t response. error message: $err');
