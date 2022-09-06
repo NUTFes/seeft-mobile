@@ -158,7 +158,7 @@ class Api {
 
   // マニュアル一覧
   Future getAllManual() async {
-    String url = constant.apiUrl + 'work/list';
+    String url = constant.apiUrl + 'tasks';
     try {
       return await get(url);
     } catch (err) {

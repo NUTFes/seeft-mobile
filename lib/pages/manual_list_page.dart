@@ -71,12 +71,12 @@ class _ManualListPageState extends State<ManualListPage> {
               new Border(bottom: BorderSide(width: 1.0, color: Colors.grey))),
       child: ListTile(
         title: Text(
-          manuals[index]["Name"].toString(),
+          manuals[index]["task"].toString(),
           style: TextStyle(color: Colors.black, fontSize: 14.0),
         ),
         onTap: () async {
-          if (await canLaunch(manuals[index]["URL"].toString())) {
-            await launch((manuals[index]["URL"].toString()));
+          if (await canLaunch(manuals[index]["url"].toString())) {
+            await launch((manuals[index]["url"].toString()));
           }
         },
       ),
