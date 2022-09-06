@@ -4,12 +4,12 @@ import 'package:seeft_mobile/configs/importer.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:http/http.dart' as http;
 
-class MyShiftPageCurrentDayRainy extends StatefulWidget {
+class MyShiftPageCurrentFirstDaySunny extends StatefulWidget {
   @override
   _MyShiftPageState createState() => _MyShiftPageState();
 }
 
-class _MyShiftPageState extends State<MyShiftPageCurrentDayRainy> {
+class _MyShiftPageState extends State<MyShiftPageCurrentFirstDaySunny> {
 // notification関連をinitStateに書き出さなきゃいけないので書いてたけどutilとかに書いてもいいかもね
 
 //  FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin;
@@ -57,7 +57,7 @@ class _MyShiftPageState extends State<MyShiftPageCurrentDayRainy> {
 Future getData() async {
   try {
     var userID = await store.getUserID();
-    var res = await api.getMyShiftCurrentDayRainy(userID.toString());
+    var res = await api.getMyShiftCurrentFirstDaySunny(userID.toString());
     return res;
   } catch (err) {
     logger.e('don`t response. error message: $err');
