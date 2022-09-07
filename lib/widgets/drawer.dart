@@ -12,8 +12,8 @@ class ApplicationDrawer {
           title: Text("マイシフト"),
           leading: const Icon(Icons.dvr),
           onTap: () => {
-            Navigator.pushNamedAndRemoveUntil(
-                context, '/my_shift_page', (Route<dynamic> route) => false)
+            // Navigator.pushNamedAndRemoveUntil(
+            //     context, '/my_shift_page', (Route<dynamic> route) => false)
           },
         ),
         ListTile(
@@ -36,8 +36,8 @@ class ApplicationDrawer {
           title: Text("タイムスケジュール"),
           leading: Icon(Icons.schedule),
           onTap: () => {
-            Navigator.pushNamedAndRemoveUntil(
-                context, '/schedule_page', (Route<dynamic> route) => false)
+            // Navigator.pushNamedAndRemoveUntil(
+            //     context, '/schedule_page', (Route<dynamic> route) => false)
           },
         ),
         ListTile(
