@@ -3,6 +3,7 @@ import 'package:seeft_mobile/configs/importer.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 getShiftDetail(workId, userId, date, weather, time) async {
+  // 本当は引数はworkIdだけでいいが、今後ほかの要素を使うことも考えてそのままに
   try {
     logger.w(workId);
     var res = await api.shiftDetail(workId, userId, date, weather, time);
@@ -22,11 +23,11 @@ openShiftDialog(
     BuildContext context, workId, userId, date, weather, time) async {
   var res = await getShiftDetail(workId, userId, date, weather, time);
   logger.i(res);
-  var resName = res["Name"];
-  var resURL = res["URL"];
-  var resUsers = res["Users"];
-  var resPlace = res["Place"];
-  var resPresident = res["President"];
+  var resName = res["task"];
+  var resURL = res["url"];
+  var resUsers = res["users"];
+  var resPlace = res["place"];
+  var resPresident = res["superviser"];
   var resPresidentTel = res["TEL"];
   showDialog(
     context: context,
@@ -58,16 +59,17 @@ openShiftDialog(
                     title: Text("集合場所"),
                     subtitle: Text(resPlace),
                   ),
-                  ListTile(
-                    leading: Icon(Icons.supervisor_account_outlined),
-                    title: Text("代表者"),
-                    subtitle: Text(resPresident),
-                  ),
-                  ListTile(
-                    leading: Icon(Icons.phone),
-                    title: Text("緊急時連絡先"),
-                    subtitle: Text(resPresidentTel),
-                  ),
+                  // 今回はいらないので一時的にコメントアウト
+                  // ListTile(
+                  //   leading: Icon(Icons.supervisor_account_outlined),
+                  //   title: Text("代表者"),
+                  //   subtitle: Text(resPresident),
+                  // ),
+                  // ListTile(
+                  //   leading: Icon(Icons.phone),
+                  //   title: Text("緊急時連絡先"),
+                  //   subtitle: Text(resPresidentTel),
+                  // ),
                   ListTile(
                     leading: Icon(Icons.group),
                     title: Text("メンバー"),

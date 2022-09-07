@@ -36,8 +36,8 @@ class ApplicationDrawer {
           title: Text("タイムスケジュール"),
           leading: Icon(Icons.schedule),
           onTap: () => {
-            Navigator.pushNamedAndRemoveUntil(
-                context, '/schedule_page', (Route<dynamic> route) => false)
+            // Navigator.pushNamedAndRemoveUntil(
+            //     context, '/schedule_page', (Route<dynamic> route) => false)
           },
         ),
         ListTile(

@@ -86,7 +86,8 @@ class Api {
 
   // 準備日雨シフト
   Future getMyShiftPreparationDayRainy(id) async {
-    String url = constant.apiUrl + '/shifts/users/' + id + '/dates/1/weathers/2';
+    // String url = constant.apiUrl + '/shifts/users/' + id + '/dates/1/weathers/2';
+    String url = constant.apiUrl + '/shifts/users/' + id + '/dates/1/weathers/1';
     try {
       return await get(url);
     } catch (err) {
@@ -206,20 +207,10 @@ class Api {
 
   // Get Shift Detail
   Future shiftDetail(workId, userId, date, weather, time) async {
-    logger.w(time);
-    var url = constant.apiUrl +
-        "/work/" +
-        workId.toString() +
-        "/" +
-        userId.toString() +
-        "/" +
-        date +
-        "/" +
-        weather +
-        "/" +
-        time;
-    logger.w(url);
+    // logger.w(time);
+    var url = constant.apiUrl + "/tasks/shifts/" + workId.toString();
     try {
+      logger.i(url);
       var res = await get(url);
       logger.i(res);
       return await get(url);
