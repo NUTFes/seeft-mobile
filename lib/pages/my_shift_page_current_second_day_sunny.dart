@@ -30,7 +30,7 @@ class _MyShiftPageState extends State<MyShiftPageCurrentSecondDaySunny> {
           logger.w("message");
         }
         if (!snapshot.hasData) {
-          return CircularProgressIndicator();
+          return Center(child: CircularProgressIndicator());
         }
         return Container(
             padding: const EdgeInsets.all(40.0),
