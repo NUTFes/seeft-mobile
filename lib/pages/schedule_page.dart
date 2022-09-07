@@ -37,7 +37,7 @@ class _SchedulePageState extends State<SchedulePage> {
             logger.w("message");
           }
           if (!snapshot.hasData) {
-            return CircularProgressIndicator();
+            return Center(child: CircularProgressIndicator());
           }
           return Container(
               padding: const EdgeInsets.all(40.0),
