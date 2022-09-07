@@ -69,8 +69,8 @@ class ShiftTable {
                       child: InkWell(
                         splashColor: Colors.orangeAccent,
                         onTap: () async {
-                          if (shifts[index]["task"] != "") {
-                            logger.i(shifts[index]["task"]);
+                          if (shifts[index]["task"]["task"] != "") {
+                            logger.i(shifts[index]["task"]["task"]);
                             await openShiftDialog(
                                 context,
                                 shifts[index]["task"]["id"],
