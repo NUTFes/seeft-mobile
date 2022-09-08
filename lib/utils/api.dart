@@ -100,8 +100,8 @@ class Api {
   // 当日1日目晴れシフト
   Future getMyShiftCurrentFirstDaySunny(id) async {
     // 一旦準備日のseedデータを使用
-    // String url = constant.apiUrl + '/shifts/users/' + id + '/dates/2/weathers/1';
-    String url = constant.apiUrl + '/shifts/users/' + id + '/dates/1/weathers/1';
+    String url = constant.apiUrl + '/shifts/users/' + id + '/dates/2/weathers/1';
+    //String url = constant.apiUrl + '/shifts/users/' + id + '/dates/1/weathers/1';
     try {
       return await get(url);
     } catch (err) {
@@ -128,8 +128,8 @@ class Api {
   // 当日2日目晴れシフト
   Future getMyShiftCurrentSecondDaySunny(id) async {
     // 一旦準備日のseedデータを使用
-    // String url = constant.apiUrl + '/shifts/users/' + id + '/dates/3/weathers/1';
-    String url = constant.apiUrl + '/shifts/users/' + id + '/dates/1/weathers/1';
+     String url = constant.apiUrl + '/shifts/users/' + id + '/dates/3/weathers/1';
+    //String url = constant.apiUrl + '/shifts/users/' + id + '/dates/1/weathers/1';
     try {
       return await get(url);
     } catch (err) {

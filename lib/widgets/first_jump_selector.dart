@@ -47,7 +47,7 @@ class _FirstJumpSelectorState extends State<FirstJumpSelector> {
           // logger.i('select SignInPage.');
           // homeWidget = '/my_shift_page';
           logger.i('select WaitPage.');
-          homeWidget = '/wait_page';
+          homeWidget = '/my_shift_page';
         } else {
           logger.i('select MainPage.');
           homeWidget = '/signin';
