@@ -73,7 +73,7 @@ class ShiftTable {
                             logger.i(shifts[index]["task"]["task"]);
                             await openShiftDialog(
                                 context,
-                                shifts[index]["task"]["id"],
+                                shifts[index]["id"],
                                 shifts[index]["user"]["id"],
                                 shifts[index]["date"]["id"],
                                 shifts[index]["weather"]["id"],
