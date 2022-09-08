@@ -6,6 +6,7 @@ import 'package:seeft_mobile/pages/my_shift_page_current_first_day.dart';
 import 'package:seeft_mobile/pages/my_shift_page_current_second_day.dart';
 import 'package:seeft_mobile/pages/pre_preparation_day_shift.dart';
 import 'package:seeft_mobile/pages/cleanup_day_time_schedule.dart';
+import 'package:seeft_mobile/pages/wait_page.dart';
 /*
 import 'package:seeft_mobile/pages/my_shift_page_preparation_day_sunny.dart';
 import 'package:seeft_mobile/pages/my_shift_page_preparation_day_rainy.dart';
@@ -28,11 +29,10 @@ class TabInfo {
 class _MyShiftPageState extends State<MyShiftPage>
     with SingleTickerProviderStateMixin {
   final List<TabInfo> _tabs = [
-    TabInfo("準々備日", PrePreparationDayShift()),
     TabInfo("準備日", MyShiftPagePreparationDay()),
     TabInfo("当日 1日目", MyShiftPageCurrentFirstDay()),
     TabInfo("当日 2日目", MyShiftPageCurrentSecondDay()),
-    TabInfo("片付け日", CleanUpDayTimeSchedule()),
+    TabInfo("片付け日", WaitPage()),
   ];
   late TabController _tabController;
 // notification関連をinitStateに書き出さなきゃいけないので書いてたけどutilとかに書いてもいいかもね
