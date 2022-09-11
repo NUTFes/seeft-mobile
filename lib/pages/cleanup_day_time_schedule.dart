@@ -164,7 +164,7 @@ class _MyShiftPageState extends State<CleanUpDayTimeSchedule> {
                                 ),
                               ),
                             ),
-                          ),                          
+                          ),
                         ],
                       ),
 
@@ -186,7 +186,7 @@ class _MyShiftPageState extends State<CleanUpDayTimeSchedule> {
                           TableCell(
                             child: Container(
                               child: Text(
-                                "",
+                                "橘",
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                   color: Colors.white,
@@ -208,7 +208,7 @@ class _MyShiftPageState extends State<CleanUpDayTimeSchedule> {
                           TableCell(
                             child: Container(
                               child: Text(
-                                "",
+                                "山崎(修)",
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                   color: Colors.white,
@@ -219,7 +219,7 @@ class _MyShiftPageState extends State<CleanUpDayTimeSchedule> {
                           TableCell(
                             child: Container(
                               child: Text(
-                                "",
+                                "原田",
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                   color: Colors.white,
@@ -230,7 +230,7 @@ class _MyShiftPageState extends State<CleanUpDayTimeSchedule> {
                           TableCell(
                             child: Container(
                               child: Text(
-                                "",
+                                "鈴木",
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                   color: Colors.white,
@@ -241,7 +241,7 @@ class _MyShiftPageState extends State<CleanUpDayTimeSchedule> {
                           TableCell(
                             child: Container(
                               child: Text(
-                                "",
+                                "黒木",
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                   color: Colors.white,
@@ -252,7 +252,7 @@ class _MyShiftPageState extends State<CleanUpDayTimeSchedule> {
                           TableCell(
                             child: Container(
                               child: Text(
-                                "",
+                                "竹内(友)",
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                   color: Colors.white,
@@ -263,7 +263,7 @@ class _MyShiftPageState extends State<CleanUpDayTimeSchedule> {
                           TableCell(
                             child: Container(
                               child: Text(
-                                "",
+                                "小武",
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                   color: Colors.white,
@@ -347,7 +347,7 @@ class _MyShiftPageState extends State<CleanUpDayTimeSchedule> {
                           TableCell(
                             child: Container(
                               child: Text(
-                                "斉藤・善場",
+                                "齋藤・善場",
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                   color: Colors.white,
