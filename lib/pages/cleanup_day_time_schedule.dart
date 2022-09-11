@@ -197,7 +197,7 @@ class _MyShiftPageState extends State<CleanUpDayTimeSchedule> {
                           TableCell(
                             child: Container(
                               child: Text(
-                                "",
+                                "窪坂",
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                   color: Colors.white,
@@ -274,7 +274,7 @@ class _MyShiftPageState extends State<CleanUpDayTimeSchedule> {
                           TableCell(
                             child: Container(
                               child: Text(
-                                "",
+                                "阿部",
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                   color: Colors.white,
