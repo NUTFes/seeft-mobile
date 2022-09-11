@@ -28,7 +28,7 @@ extension $ItemsRouteExtension on ItemsRoute {
         '/',
       );
 
-  void go(BuildContext buildContext) => buildContext.go(location, extra: this);
+  void go(BuildContext context) => context.go(location, extra: this);
 }
 
 extension $CartRouteExtension on CartRoute {
@@ -38,5 +38,5 @@ extension $CartRouteExtension on CartRoute {
         '/cart',
       );
 
-  void go(BuildContext buildContext) => buildContext.go(location, extra: this);
+  void go(BuildContext context) => context.go(location, extra: this);
 }
