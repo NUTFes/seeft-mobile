@@ -18,6 +18,10 @@ GoRoute get $itemsRoute => GoRouteData.$route(
           path: 'cart',
           factory: $CartRouteExtension._fromState,
         ),
+        GoRouteData.$route(
+          path: 'user',
+          factory: $UserRouteExtension._fromState,
+        ),
       ],
     );
 
@@ -36,6 +40,16 @@ extension $CartRouteExtension on CartRoute {
 
   String get location => GoRouteData.$location(
         '/cart',
+      );
+
+  void go(BuildContext context) => context.go(location, extra: this);
+}
+
+extension $UserRouteExtension on UserRoute {
+  static UserRoute _fromState(GoRouterState state) => const UserRoute();
+
+  String get location => GoRouteData.$location(
+        '/user',
       );
 
   void go(BuildContext context) => context.go(location, extra: this);
