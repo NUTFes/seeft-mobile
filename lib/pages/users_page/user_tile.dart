@@ -24,37 +24,16 @@ class UserTile extends ConsumerWidget {
           child: Row(
             children: [
               const SizedBox(width: 8),
-              ItemInfo(
+              UserInfo(
                 title: user.name,
                 price: user.mail,
-                info: Text(
-                  '在庫',
-                  style: theme.textTheme.caption,
-                ),
+                bureau: user.bureauId,
               ),
             ],
           ),
         ),
         const Divider(indent: indent),
       ],
-    );
-  }
-}
-
-class _AddButton extends ConsumerWidget {
-  const _AddButton({
-    required this.id,
-  });
-
-  final String id;
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    return CupertinoButton(
-      onPressed: ref.watch(hasStockProviders(id))
-          ? () => ref.read(cartMapProvider.notifier).add(id)
-          : null,
-      child: const Text('追加'),
     );
   }
 }

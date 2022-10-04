@@ -157,9 +157,9 @@ abstract class _ItemStock extends ItemStock {
   _ItemStock._() : super._();
 
   @override
-  Item get item => throw _privateConstructorUsedError;
+  Item get item;
   @override
-  int get quantity => throw _privateConstructorUsedError;
+  int get quantity;
   @override
   @JsonKey(ignore: true)
   _$$_ItemStockCopyWith<_$_ItemStock> get copyWith =>

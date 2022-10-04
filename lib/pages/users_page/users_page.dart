@@ -25,8 +25,7 @@ class UsersPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Scaffold(
       appBar: CupertinoNavigationBar(
-        middle: Text('商品リスト'),
-        leading: _CartButton(),
+        middle: Text('ユーザー一覧'),
       ),
       body: _ListView(),
     );
@@ -46,21 +45,5 @@ class _ListView extends ConsumerWidget {
             itemCount: ids.length,
             itemBuilder: (_, index) => UserTile(id: ids[index]),
           );
-  }
-}
-
-class _CartButton extends ConsumerWidget {
-  const _CartButton();
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    return NavigationBarButton(
-      text: ref.watch(
-        cartTotalQuantityProvider.select((quantity) => 'カート($quantity)'),
-      ),
-      onPressed: ref.watch(cartEmptyProvider)
-          ? null
-          : () => const CartRoute().go(context),
-    );
   }
 }

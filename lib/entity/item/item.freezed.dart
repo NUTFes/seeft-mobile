@@ -182,7 +182,9 @@ class _$_Item extends _Item with DiagnosticableTreeMixin {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ItemToJson(this);
+    return _$$_ItemToJson(
+      this,
+    );
   }
 }
 
@@ -197,13 +199,13 @@ abstract class _Item extends Item {
   factory _Item.fromJson(Map<String, dynamic> json) = _$_Item.fromJson;
 
   @override
-  String get id => throw _privateConstructorUsedError;
+  String get id;
   @override
-  int get price => throw _privateConstructorUsedError;
+  int get price;
   @override
-  String get title => throw _privateConstructorUsedError;
+  String get title;
   @override
-  String get imageUrl => throw _privateConstructorUsedError;
+  String get imageUrl;
   @override
   @JsonKey(ignore: true)
   _$$_ItemCopyWith<_$_Item> get copyWith => throw _privateConstructorUsedError;
