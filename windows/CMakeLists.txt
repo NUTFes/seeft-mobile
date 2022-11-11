@@ -1,7 +1,7 @@
-cmake_minimum_required(VERSION 3.15)
-project(seeft_mobile LANGUAGES CXX)
+cmake_minimum_required(VERSION 3.14)
+project(wdb106_sample LANGUAGES CXX)
 
-set(BINARY_NAME "seeft_mobile")
+set(BINARY_NAME "wdb106_sample")
 
 cmake_policy(SET CMP0063 NEW)
 
