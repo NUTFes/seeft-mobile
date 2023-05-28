@@ -19,7 +19,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   freezed: ^2.1.1
-  go_router_builder: ^1.0.14
+  go_router_builder: ^2.0.0
   image_test_utils:
     git:
       url: https://github.com/mono0926/image_test_utils.git
